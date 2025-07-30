@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Article | Ezra Memorial Secondary School</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="../../images/logo-ezra.jpg" alt="Ezra Memorial Secondary School Logo" class="school-logo" />
+                <h2>Ezra Memorial S.S.</h2>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../academics/">Academics</a></li>
+                    <li><a href="../admissions/">Admissions</a></li>
+                    <li><a href="../student-life/">Student Life</a></li>
+                    <li><a href="../gallery/">Gallery</a></li>
+                    <li><a href="../contact/">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="news-details">
+            <a href="../../index.html" class="back-link">&larr; Back to Home</a>
+            
+            <!-- Loading State -->
+            <div id="loading-state" class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading article...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error-state" class="error-state" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h2>Article Not Found</h2>
+                <p>The news article you're looking for could not be found.</p>
+                <a href="../../index.html" class="back-btn">Return to Home</a>
+            </div>
+
+            <!-- News Content -->
+            <div id="news-content" class="news-content" style="display: none;">
+                <img id="news-image" src="" alt="" class="news-details-img">
+                <h1 id="news-title"></h1>
+                <p class="news-date">Published: <time id="news-date"></time></p>
+                <div id="news-body" class="news-full-story"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ezra Memorial Secondary School. All rights reserved.</p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Configuration and News Details Script -->
+    <script src="../../js/config.js"></script>
+    <script src="../../js/news-details.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html> 

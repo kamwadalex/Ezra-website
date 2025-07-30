@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Ezra Memorial Secondary School</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="../../images/logo-ezra.jpg" alt="Ezra Memorial Secondary School Logo" class="school-logo" />
+                <h2>Ezra Memorial S.S.</h2>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../academics/">Academics</a></li>
+                    <li><a href="../admissions/">Admissions</a></li>
+                    <li><a href="../student-life/">Student Life</a></li>
+                    <li><a href="../gallery/">Gallery</a></li>
+                    <li><a href="../contact/">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero-contact">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you! Reach out to us using the information below.</p>
+        </section>
+        <section class="features contact-attractive">
+            <h2>School Location</h2>
+            <div class="contact-info-box">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Address:</strong><br>
+                        Ezra Memorial SS<br>
+                        Tirinyi, Kibuku District<br>
+                        P.O. Box 1948, Mbale.<br>
+                        <a href="https://maps.app.goo.gl/5UtyyCNAeNcFmEZB9" target="_blank" rel="noopener">View on Google Maps</a>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <strong>Phone:</strong><br>
+                        <a href="tel:+256758991782">+256 758 991782</a><br>
+                        <a href="tel:+256772692685">+256 772 692685</a>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%;max-width:600px;margin:2rem auto 0 auto;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d1677.2511759148842!2d33.791779102211144!3d1.0103044653498248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d1.0099188416420384!2d33.79200915912818!5e0!3m2!1sen!2sug!4v1753693352963!5m2!1sen!2sug" width="100%" height="350" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+        <section class="contact-form-section">
+            <h2>Send Us a Message</h2>
+            <form id="contact-form" class="contact-form" novalidate>
+                <div class="form-group">
+                    <label for="contact-name">Name</label>
+                    <input type="text" id="contact-name" name="name" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Email</label>
+                    <input type="email" id="contact-email" name="email" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="contact-subject">Subject</label>
+                    <input type="text" id="contact-subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="contact-submit-btn">Send Message</button>
+            </form>
+            <div id="contact-form-notification" class="contact-form-notification"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Ezra Memorial Secondary School. All rights reserved.<br>
+        <a href="mailto:apexdeveloper3@gmail.com" class="footer-dev-link">Contact Developer</a></p>
+    </footer>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="../../js/config.js"></script>
+    <script src="../../js/contact-form.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html> 

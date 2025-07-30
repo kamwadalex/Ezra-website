@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ezra Memorial Secondary School</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo-ezra.jpg" alt="Ezra Memorial Secondary School Logo" class="school-logo" />
+                <h2>Ezra Memorial S.S.</h2>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pages/academics/">Academics</a></li>
+                    <li><a href="pages/admissions/">Admissions</a></li>
+                    <li><a href="pages/student-life/">Student Life</a></li>
+                    <li><a href="pages/gallery/">Gallery</a></li>
+                    <li><a href="pages/contact/">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="slideshow-hero">
+            <div class="slideshow-container">
+                <div class="slide fade" style="background-image: url('images/slide1.jpg');">
+                    <div class="slide-caption">
+                        <h1>Welcome to Ezra Memorial S.S.</h1>
+                        <p>Empowering students for a bright future through excellence in education</p>
+                    </div>
+                </div>
+                <div class="slide fade" style="background-image: url('images/slide2.jpeg');">
+                    <div class="slide-caption">
+                        <h1>Academic Excellence</h1>
+                        <p>Comprehensive curriculum designed for success and personal growth</p>
+                    </div>
+                </div>
+                <div class="slide fade" style="background-image: url('images/slide3.jpeg');">
+                    <div class="slide-caption">
+                        <h1>Modern Facilities</h1>
+                        <p>State-of-the-art learning environments and resources</p>
+                    </div>
+                </div>
+                <div class="slide fade" style="background-image: url('images/slide4.jpeg');">
+                    <div class="slide-caption">
+                        <h1>Vibrant Student Life</h1>
+                        <p>Clubs, sports, and activities for all-round development</p>
+                    </div>
+                </div>
+                <div class="slide fade" style="background-image: url('images/slide5.jpeg');">
+                    <div class="slide-caption">
+                        <h1>Join Us Today</h1>
+                        <p>Admissions open for new students and transfers</p>
+                    </div>
+                </div>
+                <a class="prev" aria-label="Previous slide">&#10094;</a>
+                <a class="next" aria-label="Next slide">&#10095;</a>
+            </div>
+            <div class="slideshow-dots">
+                <span class="dot" aria-label="Go to slide 1"></span>
+                <span class="dot" aria-label="Go to slide 2"></span>
+                <span class="dot" aria-label="Go to slide 3"></span>
+                <span class="dot" aria-label="Go to slide 4"></span>
+                <span class="dot" aria-label="Go to slide 5"></span>
+            </div>
+        </section>
+
+        <section class="news-cards latest-news">
+            <h2>Latest News</h2>
+            <div class="news-cards-grid" id="news-cards-grid">
+                <!-- News cards will be loaded dynamically from Firestore -->
+                <div class="loading-news">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading latest news...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Why Choose Ezra Memorial Secondary School?</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <h3>Academic Excellence</h3>
+                    <p>Comprehensive curriculum designed for success and personal growth</p>
+                </div>
+                <div class="feature">
+                    <h3>Experienced Faculty</h3>
+                    <p>Dedicated teachers committed to student development and achievement</p>
+                </div>
+                <div class="feature">
+                    <h3>Modern Facilities</h3>
+                    <p>State-of-the-art learning environments and resources</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="upcoming-events">
+            <h2>Upcoming Events</h2>
+            <div class="events-grid" id="events-grid">
+                <!-- Events will be loaded dynamically from Firestore -->
+                <div class="loading-events">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading upcoming events...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Ezra Memorial Secondary School. All rights reserved.<br>
+        <a href="mailto:apexdeveloper3@gmail.com" class="footer-dev-link">Contact Developer</a>
+        <span class="footer-separator">|</span>
+        <a href="pages/admin/index.html" class="footer-admin-link">Admin Portal</a></p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Configuration and Dynamic Loading -->
+    <script src="js/config.js"></script>
+    <script src="js/dynamic-news.js"></script>
+    <script src="js/dynamic-events.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 

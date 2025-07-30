@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Ezra Memorial Secondary School</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="../../images/logo-ezra.jpg" alt="Ezra Memorial Secondary School Logo" class="school-logo" />
+                <h2>Ezra Memorial S.S.</h2>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../academics/">Academics</a></li>
+                    <li><a href="../admissions/">Admissions</a></li>
+                    <li><a href="../student-life/">Student Life</a></li>
+                    <li><a href="../gallery/">Gallery</a></li>
+                    <li><a href="../contact/">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-gallery">
+            <h1>School Gallery</h1>
+            <p>Explore moments from our vibrant school community, events, and campus life</p>
+        </section>
+
+        <section class="upload-section">
+            <h2>Share Your Photos</h2>
+            <p>Help us build our gallery by uploading photos from school events, activities, and memorable moments.</p>
+            <button id="upload-btn" class="upload-btn">
+                <i class="fas fa-cloud-upload-alt"></i> Upload Images
+            </button>
+        </section>
+
+        <section class="features">
+            <h2>Photo Gallery</h2>
+            <p>Discover the diverse activities and achievements of our students and staff through our photo collection.</p>
+            
+            <div class="gallery-info" id="gallery-info">
+                <span class="gallery-counter">Showing <span id="images-count">0</span> images</span>
+            </div>
+            
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Images will be loaded dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Upload Modal -->
+    <div id="upload-modal" class="upload-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Upload Images</h2>
+                <button id="close-modal" class="close-modal">&times;</button>
+            </div>
+            
+            <form id="upload-form" class="upload-form">
+                <div class="form-group">
+                    <label for="file-input">Select Images</label>
+                    <input type="file" id="file-input" name="images" multiple accept="image/*" required>
+                    <small>Select up to 5 images (JPEG, PNG, GIF, WebP) under 5MB each</small>
+                </div>
+
+                <div id="file-preview" class="file-preview"></div>
+
+                <div class="form-group">
+                    <label for="image-category">Category</label>
+                    <select id="image-category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="School Events">School Events</option>
+                        <option value="Academic Activities">Academic Activities</option>
+                        <option value="Sports & Athletics">Sports & Athletics</option>
+                        <option value="Campus Life">Campus Life</option>
+                        <option value="Student Achievements">Student Achievements</option>
+                        <option value="Cultural Events">Cultural Events</option>
+                        <option value="General">General</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="image-description">Description (Optional)</label>
+                    <textarea id="image-description" name="description" placeholder="Describe the images or event..."></textarea>
+                </div>
+
+                <div class="upload-progress">
+                    <div class="progress-bar" id="upload-progress"></div>
+                </div>
+                <div class="progress-text" id="progress-text"></div>
+
+                <button type="submit" id="submit-upload" class="submit-upload" disabled>
+                    Upload Images
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Image View Modal -->
+    <div id="image-modal" class="image-modal">
+        <div class="image-modal-content">
+            <button class="close-image-modal" id="close-image-modal">&times;</button>
+            <img id="modal-image" src="" alt="">
+            <div class="image-modal-info">
+                <h3 id="modal-title"></h3>
+                <p id="modal-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Ezra Memorial Secondary School. All rights reserved.</p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Configuration and Gallery Upload -->
+    <script src="../../js/config.js"></script>
+    <script src="../../js/gallery-upload.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html> 

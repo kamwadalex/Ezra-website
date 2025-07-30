@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Ezra Memorial Secondary School</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="../../images/logo-ezra.jpg" alt="Ezra Memorial Secondary School Logo" class="school-logo" />
+                <h2>Ezra Memorial S.S.</h2>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="../../index.html">Back to Website</a></li>
+                    <li><a href="#" id="logout-btn">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Login Form -->
+    <div id="login-section" class="admin-login">
+        <div class="login-container">
+            <div class="login-header">
+                <h2><i class="fas fa-lock"></i> Admin Login</h2>
+                <p>Access the school administration dashboard</p>
+            </div>
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="admin-username">Username</label>
+                    <input type="text" id="admin-username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" name="password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <div id="login-error" class="login-error"></div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="admin-dashboard" style="display: none;">
+        <main>
+            <section class="admin-hero">
+                <h1>Admin Dashboard</h1>
+                <p>Welcome, <span id="admin-name">Administrator</span></p>
+            </section>
+
+            <!-- Dashboard Stats -->
+            <section class="dashboard-stats">
+                <div class="stat-card">
+                    <i class="fas fa-images"></i>
+                    <h3>Gallery Images</h3>
+                    <p id="gallery-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-calendar"></i>
+                    <h3>Events</h3>
+                    <p id="events-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>News Articles</h3>
+                    <p id="news-count">0</p>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-buttons">
+                    <button class="action-btn" id="upload-images-btn">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        Upload Images
+                    </button>
+                    <button class="action-btn" id="add-news-btn">
+                        <i class="fas fa-plus"></i>
+                        Add News
+                    </button>
+                    <button class="action-btn" id="manage-events-btn">
+                        <i class="fas fa-calendar-alt"></i>
+                        Manage Events
+                    </button>
+                    <button class="action-btn" id="manage-gallery-btn">
+                        <i class="fas fa-images"></i>
+                        Manage Gallery
+                    </button>
+                    <button class="action-btn" id="view-analytics-btn">
+                        <i class="fas fa-chart-bar"></i>
+                        View Analytics
+                    </button>
+                </div>
+            </section>
+
+            <!-- Gallery Management -->
+            <section class="admin-section" id="gallery-management">
+                <h2>Gallery Management</h2>
+                <div class="admin-controls">
+                    <button class="admin-btn primary" id="refresh-gallery-btn">
+                        <i class="fas fa-sync-alt"></i> Refresh Gallery
+                    </button>
+                    <button class="admin-btn danger" id="delete-selected-btn" disabled>
+                        <i class="fas fa-trash"></i> Delete Selected
+                    </button>
+                </div>
+                <div class="admin-gallery-grid" id="admin-gallery-grid">
+                    <!-- Gallery items will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Events Management -->
+            <section class="admin-section" id="events-management">
+                <h2>Events Management</h2>
+                <div class="admin-controls">
+                    <button class="admin-btn primary" id="add-event-btn">
+                        <i class="fas fa-plus"></i> Add Event
+                    </button>
+                </div>
+                <div class="events-list" id="events-list">
+                    <!-- Events will be loaded here -->
+                </div>
+            </section>
+
+            <!-- News Management -->
+            <section class="admin-section" id="news-management">
+                <h2>News Management</h2>
+                <div class="admin-controls">
+                    <button class="admin-btn primary" id="add-news-article-btn">
+                        <i class="fas fa-plus"></i> Add News Article
+                    </button>
+                </div>
+                <div class="news-list" id="news-list">
+                    <!-- News articles will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Messages Management -->
+            <section class="admin-section" id="messages-management">
+                <h2>Messages</h2>
+                <div class="admin-controls">
+                    <button class="admin-btn primary" id="refresh-messages-btn">
+                        <i class="fas fa-sync-alt"></i> Refresh Messages
+                    </button>
+                </div>
+                <div class="messages-list" id="messages-list">
+                    <!-- Messages will be loaded here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="admin-upload-modal" class="admin-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Upload Images</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="admin-upload-form" class="upload-form">
+                <div class="form-group">
+                    <label for="admin-file-input">Select Images</label>
+                    <input type="file" id="admin-file-input" name="images" multiple accept="image/*" required>
+                </div>
+                <div id="admin-file-preview" class="file-preview"></div>
+                <div class="form-group">
+                    <label for="admin-image-category">Category</label>
+                    <select id="admin-image-category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="School Events">School Events</option>
+                        <option value="Academic Activities">Academic Activities</option>
+                        <option value="Sports & Athletics">Sports & Athletics</option>
+                        <option value="Campus Life">Campus Life</option>
+                        <option value="Student Achievements">Student Achievements</option>
+                        <option value="Cultural Events">Cultural Events</option>
+                        <option value="General">General</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="admin-image-description">Description</label>
+                    <textarea id="admin-image-description" name="description" placeholder="Describe the images..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Upload Images</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Event Modal -->
+    <div id="add-event-modal" class="admin-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Event</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="add-event-form" class="event-form">
+                <div class="form-group">
+                    <label for="event-title">Event Title</label>
+                    <input type="text" id="event-title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-description">Description</label>
+                    <textarea id="event-description" name="description" required placeholder="Event description..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="event-date">Date & Time</label>
+                    <input type="datetime-local" id="event-date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-location">Location (Optional)</label>
+                    <input type="text" id="event-location" name="location" placeholder="Event location...">
+                </div>
+                <div class="form-group">
+                    <label for="event-category">Category</label>
+                    <select id="event-category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="Academic">Academic</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Cultural">Cultural</option>
+                        <option value="Meeting">Meeting</option>
+                        <option value="Examination">Examination</option>
+                        <option value="Holiday">Holiday</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Add Event</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Event Modal -->
+    <div id="edit-event-modal" class="admin-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Event</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="edit-event-form" class="event-form">
+                <input type="hidden" id="edit-event-id" name="eventId">
+                <div class="form-group">
+                    <label for="edit-event-title">Event Title</label>
+                    <input type="text" id="edit-event-title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-description">Description</label>
+                    <textarea id="edit-event-description" name="description" required placeholder="Event description..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-date">Date & Time</label>
+                    <input type="datetime-local" id="edit-event-date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-location">Location (Optional)</label>
+                    <input type="text" id="edit-event-location" name="location" placeholder="Event location...">
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-category">Category</label>
+                    <select id="edit-event-category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="Academic">Academic</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Cultural">Cultural</option>
+                        <option value="Meeting">Meeting</option>
+                        <option value="Examination">Examination</option>
+                        <option value="Holiday">Holiday</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Update Event</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add News Modal -->
+    <div id="add-news-modal" class="admin-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add News Article</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="add-news-form" class="news-form">
+                <div class="form-group">
+                    <label for="news-title">Title</label>
+                    <input type="text" id="news-title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="news-image">Featured Image</label>
+                    <input type="file" id="news-image" name="image" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="news-excerpt">Excerpt</label>
+                    <textarea id="news-excerpt" name="excerpt" required placeholder="Short summary..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="news-content">Full Content</label>
+                    <textarea id="news-content" name="content" required placeholder="Full article content..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Publish News</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    
+    <!-- Configuration and Admin Scripts -->
+    <script src="../../js/config.js"></script>
+    <script src="../../js/admin.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html> 
