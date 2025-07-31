@@ -4,9 +4,13 @@ class AdminDashboard {
         this.isAuthenticated = false;
         this.currentUser = null;
         this.selectedImages = new Set();
+        this.sessionTimeout = 30 * 60 * 1000; // 30 minutes in milliseconds
+        this.sessionTimer = null;
+        this.activityTimer = null;
         this.initializeFirebase();
         this.bindEvents();
         this.checkAuthStatus();
+        this.initializeSessionManagement();
     }
 
     // Initialize Firebase
@@ -18,6 +22,201 @@ class AdminDashboard {
         } else {
             console.error('Firebase not loaded');
         }
+    }
+
+    // Initialize session management
+    initializeSessionManagement() {
+        // Set up activity monitoring
+        this.setupActivityMonitoring();
+        
+        // Check for existing session on page load
+        this.checkExistingSession();
+        
+        // Set up page visibility change handler
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.pauseSessionTimer();
+            } else {
+                this.resumeSessionTimer();
+            }
+        });
+    }
+
+    // Set up activity monitoring
+    setupActivityMonitoring() {
+        const activityEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+        
+        activityEvents.forEach(event => {
+            document.addEventListener(event, () => {
+                this.resetSessionTimer();
+            }, { passive: true });
+        });
+    }
+
+    // Check for existing session
+    checkExistingSession() {
+        const sessionStart = sessionStorage.getItem('adminSessionStart');
+        if (sessionStart) {
+            const sessionAge = Date.now() - parseInt(sessionStart);
+            if (sessionAge > this.sessionTimeout) {
+                // Session expired, clear it
+                this.clearSession();
+                this.showNotification('Session expired due to inactivity', 'info');
+            } else {
+                // Session still valid, restart timer
+                this.startSessionTimer();
+            }
+        }
+    }
+
+    // Start session timer
+    startSessionTimer() {
+        this.clearSessionTimer();
+        
+        // Set warning timer (5 minutes before timeout)
+        const warningTime = this.sessionTimeout - (5 * 60 * 1000); // 5 minutes before timeout
+        setTimeout(() => {
+            if (this.isAuthenticated) {
+                this.showSessionWarning();
+            }
+        }, warningTime);
+        
+        // Set main session timer
+        this.sessionTimer = setTimeout(() => {
+            this.handleSessionTimeout();
+        }, this.sessionTimeout);
+        
+        // Store session start time
+        sessionStorage.setItem('adminSessionStart', Date.now().toString());
+        
+        // Start session time display update
+        this.updateSessionTimeDisplay();
+    }
+
+    // Update session time display
+    updateSessionTimeDisplay() {
+        if (!this.isAuthenticated) return;
+        
+        const sessionStart = sessionStorage.getItem('adminSessionStart');
+        if (!sessionStart) return;
+        
+        const updateDisplay = () => {
+            const elapsed = Date.now() - parseInt(sessionStart);
+            const remaining = this.sessionTimeout - elapsed;
+            
+            if (remaining <= 0) {
+                this.handleSessionTimeout();
+                return;
+            }
+            
+            const minutes = Math.floor(remaining / 60000);
+            const seconds = Math.floor((remaining % 60000) / 1000);
+            
+            const sessionTimeElement = document.getElementById('session-time');
+            const sessionStatusElement = document.getElementById('session-status');
+            
+            if (sessionTimeElement) {
+                sessionTimeElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')} remaining`;
+            }
+            
+            if (sessionStatusElement) {
+                sessionStatusElement.className = 'session-status';
+                if (remaining <= 5 * 60 * 1000) { // 5 minutes or less
+                    sessionStatusElement.classList.add('danger');
+                } else if (remaining <= 10 * 60 * 1000) { // 10 minutes or less
+                    sessionStatusElement.classList.add('warning');
+                }
+            }
+        };
+        
+        // Update immediately
+        updateDisplay();
+        
+        // Update every second
+        this.sessionTimeInterval = setInterval(updateDisplay, 1000);
+    }
+
+    // Show session warning
+    showSessionWarning() {
+        const warningDiv = document.createElement('div');
+        warningDiv.className = 'session-warning';
+        warningDiv.innerHTML = `
+            <div class="session-warning-content">
+                <i class="fas fa-clock"></i>
+                <span>Your session will expire in 5 minutes due to inactivity. Click anywhere to extend your session.</span>
+                <button onclick="this.parentElement.parentElement.remove()" class="session-warning-close">&times;</button>
+            </div>
+        `;
+        
+        document.body.appendChild(warningDiv);
+        
+        // Auto-remove warning after 4 minutes
+        setTimeout(() => {
+            if (warningDiv.parentElement) {
+                warningDiv.remove();
+            }
+        }, 4 * 60 * 1000);
+    }
+
+    // Reset session timer
+    resetSessionTimer() {
+        if (this.isAuthenticated) {
+            this.startSessionTimer();
+        }
+    }
+
+    // Clear session timer
+    clearSessionTimer() {
+        if (this.sessionTimer) {
+            clearTimeout(this.sessionTimer);
+            this.sessionTimer = null;
+        }
+    }
+
+    // Pause session timer (when page is hidden)
+    pauseSessionTimer() {
+        this.clearSessionTimer();
+    }
+
+    // Resume session timer (when page becomes visible)
+    resumeSessionTimer() {
+        if (this.isAuthenticated) {
+            this.startSessionTimer();
+        }
+    }
+
+    // Handle session timeout
+    handleSessionTimeout() {
+        this.showNotification('Session expired due to inactivity. Please log in again.', 'info');
+        this.clearSession();
+        this.handleLogout();
+    }
+
+    // Clear session data
+    clearSession() {
+        sessionStorage.removeItem('adminSessionStart');
+        this.clearSessionTimer();
+        
+        // Clear session time display interval
+        if (this.sessionTimeInterval) {
+            clearInterval(this.sessionTimeInterval);
+            this.sessionTimeInterval = null;
+        }
+        
+        // Reset session status display
+        const sessionTimeElement = document.getElementById('session-time');
+        const sessionStatusElement = document.getElementById('session-status');
+        
+        if (sessionTimeElement) {
+            sessionTimeElement.textContent = 'Session active';
+        }
+        
+        if (sessionStatusElement) {
+            sessionStatusElement.className = 'session-status';
+        }
+        
+        this.isAuthenticated = false;
+        this.currentUser = null;
     }
 
     // Bind event listeners
@@ -130,11 +329,13 @@ class AdminDashboard {
                 if (user) {
                     this.isAuthenticated = true;
                     this.currentUser = user;
+                    this.startSessionTimer(); // Start session timer on successful auth
                     this.showDashboard();
                     this.loadDashboardStats();
                 } else {
                     this.isAuthenticated = false;
                     this.currentUser = null;
+                    this.clearSession(); // Clear session on logout
                     this.showLogin();
                 }
             });
@@ -173,6 +374,7 @@ class AdminDashboard {
             if (this.auth) {
                 await this.auth.signOut();
             }
+            this.clearSession(); // Clear session data
             this.isAuthenticated = false;
             this.currentUser = null;
             this.showLogin();
