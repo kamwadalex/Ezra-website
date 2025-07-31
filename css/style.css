@@ -1,3 +1,139 @@
+/* JavaScript Warning Styles */
+.js-warning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.js-warning-content {
+    background: white;
+    border-radius: 15px;
+    padding: 3rem;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.js-warning-content h2 {
+    color: #e74c3c;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.js-warning-content h2 i {
+    font-size: 1.8rem;
+}
+
+.js-warning-content p {
+    margin-bottom: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.js-warning-content ul {
+    text-align: left;
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+.js-warning-content ul li {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.js-warning-content strong {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.js-enable-instructions {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #eee;
+}
+
+.js-enable-instructions h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.browser-instructions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.browser {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.browser h4 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.browser p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .js-warning {
+        padding: 1rem;
+    }
+    
+    .js-warning-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .js-warning-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .browser-instructions {
+        grid-template-columns: 1fr;
+    }
+    
+    .browser {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .js-warning-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .js-warning-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    .js-warning-content ul {
+        padding-left: 1.5rem;
+    }
+}
+
 /* Reset and base styles */
 * {
     margin: 0;

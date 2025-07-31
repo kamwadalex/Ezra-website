@@ -8,6 +8,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- JavaScript Detection Warning -->
+    <noscript>
+        <div class="js-warning">
+            <div class="js-warning-content">
+                <h2><i class="fas fa-exclamation-triangle"></i> JavaScript is Required</h2>
+                <p>This page requires JavaScript for full functionality. Without JavaScript, you cannot:</p>
+                <ul>
+                    <li>Submit the contact form</li>
+                    <li>Receive form validation feedback</li>
+                    <li>Get real-time form status updates</li>
+                    <li>Access dynamic content features</li>
+                </ul>
+                <p><strong>Please enable JavaScript in your browser to use the contact form.</strong></p>
+                <div class="js-enable-instructions">
+                    <h3>How to enable JavaScript:</h3>
+                    <div class="browser-instructions">
+                        <div class="browser">
+                            <h4>Chrome/Edge</h4>
+                            <p>Settings → Privacy and security → Site Settings → JavaScript → Allowed</p>
+                        </div>
+                        <div class="browser">
+                            <h4>Firefox</h4>
+                            <p>Settings → Privacy & Security → Permissions → JavaScript → Enable</p>
+                        </div>
+                        <div class="browser">
+                            <h4>Safari</h4>
+                            <p>Preferences → Security → Enable JavaScript</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </noscript>
+    
+    <!-- JavaScript Detection Script -->
+    <script>
+        // Hide the warning if JavaScript is enabled
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove any noscript warnings if JavaScript is running
+            const noscriptWarnings = document.querySelectorAll('.js-warning');
+            noscriptWarnings.forEach(warning => warning.remove());
+        });
+    </script>
+
     <header>
         <div class="nav-container">
             <div class="logo">
