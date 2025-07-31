@@ -89,51 +89,24 @@ class AdminDashboard {
         // Store session start time
         sessionStorage.setItem('adminSessionStart', Date.now().toString());
         
-        // Start session time display update
-        this.updateSessionTimeDisplay();
+        // Update session status display (no countdown timer)
+        this.updateSessionStatus();
     }
 
-    // Update session time display
-    updateSessionTimeDisplay() {
+    // Update session status display (no countdown timer)
+    updateSessionStatus() {
         if (!this.isAuthenticated) return;
         
-        const sessionStart = sessionStorage.getItem('adminSessionStart');
-        if (!sessionStart) return;
+        const sessionTimeElement = document.getElementById('session-time');
+        const sessionStatusElement = document.getElementById('session-status');
         
-        const updateDisplay = () => {
-            const elapsed = Date.now() - parseInt(sessionStart);
-            const remaining = this.sessionTimeout - elapsed;
-            
-            if (remaining <= 0) {
-                this.handleSessionTimeout();
-                return;
-            }
-            
-            const minutes = Math.floor(remaining / 60000);
-            const seconds = Math.floor((remaining % 60000) / 1000);
-            
-            const sessionTimeElement = document.getElementById('session-time');
-            const sessionStatusElement = document.getElementById('session-status');
-            
-            if (sessionTimeElement) {
-                sessionTimeElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')} remaining`;
-            }
-            
-            if (sessionStatusElement) {
-                sessionStatusElement.className = 'session-status';
-                if (remaining <= 5 * 60 * 1000) { // 5 minutes or less
-                    sessionStatusElement.classList.add('danger');
-                } else if (remaining <= 10 * 60 * 1000) { // 10 minutes or less
-                    sessionStatusElement.classList.add('warning');
-                }
-            }
-        };
+        if (sessionTimeElement) {
+            sessionTimeElement.textContent = 'Session active';
+        }
         
-        // Update immediately
-        updateDisplay();
-        
-        // Update every second
-        this.sessionTimeInterval = setInterval(updateDisplay, 1000);
+        if (sessionStatusElement) {
+            sessionStatusElement.className = 'session-status';
+        }
     }
 
     // Show session warning
@@ -143,7 +116,7 @@ class AdminDashboard {
         warningDiv.innerHTML = `
             <div class="session-warning-content">
                 <i class="fas fa-clock"></i>
-                <span>Your session will expire in 5 minutes due to inactivity. Click anywhere to extend your session.</span>
+                <span>You have been inactive for a while. Your session will expire soon. Click anywhere to stay logged in.</span>
                 <button onclick="this.parentElement.parentElement.remove()" class="session-warning-close">&times;</button>
             </div>
         `;
@@ -196,12 +169,6 @@ class AdminDashboard {
     clearSession() {
         sessionStorage.removeItem('adminSessionStart');
         this.clearSessionTimer();
-        
-        // Clear session time display interval
-        if (this.sessionTimeInterval) {
-            clearInterval(this.sessionTimeInterval);
-            this.sessionTimeInterval = null;
-        }
         
         // Reset session status display
         const sessionTimeElement = document.getElementById('session-time');
