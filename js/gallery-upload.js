@@ -58,9 +58,14 @@ class GalleryUploader {
         // Image modal functionality
         const imageModal = document.getElementById('image-modal');
         const closeImageModal = document.getElementById('close-image-modal');
+        const toggleInfoBtn = document.getElementById('toggle-info-btn');
 
         if (closeImageModal) {
             closeImageModal.addEventListener('click', () => this.closeImageModal());
+        }
+
+        if (toggleInfoBtn) {
+            toggleInfoBtn.addEventListener('click', () => this.toggleImageInfo());
         }
 
         if (imageModal) {
@@ -452,6 +457,8 @@ class GalleryUploader {
         const modalImg = document.getElementById('modal-image');
         const modalTitle = document.getElementById('modal-title');
         const modalDesc = document.getElementById('modal-description');
+        const modalInfo = document.querySelector('.image-modal-info');
+        const toggleBtn = document.getElementById('toggle-info-btn');
 
         if (modal && modalImg) {
             modalImg.src = imageData.url;
@@ -465,6 +472,21 @@ class GalleryUploader {
                 modalDesc.textContent = imageData.description || '';
             }
 
+            // Handle info overlay visibility
+            if (modalInfo && toggleBtn) {
+                const hasDescription = imageData.description && imageData.description.trim() !== '';
+                const isGenericCategory = imageData.category === 'General' || imageData.category === '';
+                
+                if (!hasDescription && isGenericCategory) {
+                    modalInfo.style.display = 'none';
+                    toggleBtn.style.display = 'none'; // Hide toggle button if no info to show
+                } else {
+                    modalInfo.style.display = 'block';
+                    toggleBtn.style.display = 'block';
+                    toggleBtn.classList.remove('hidden');
+                }
+            }
+
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -476,6 +498,18 @@ class GalleryUploader {
         if (modal) {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
+        }
+    }
+
+    // Toggle image info overlay
+    toggleImageInfo() {
+        const modalInfo = document.querySelector('.image-modal-info');
+        const toggleBtn = document.getElementById('toggle-info-btn');
+        
+        if (modalInfo && toggleBtn) {
+            const isVisible = modalInfo.style.display !== 'none';
+            modalInfo.style.display = isVisible ? 'none' : 'block';
+            toggleBtn.classList.toggle('hidden', !isVisible);
         }
     }
 
