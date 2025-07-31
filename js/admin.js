@@ -109,6 +109,54 @@ class AdminDashboard {
         }
     }
 
+    // Update date and time display
+    updateDateTime() {
+        const now = new Date();
+        
+        // Update date
+        const dateDisplay = document.getElementById('date-display');
+        if (dateDisplay) {
+            const dateOptions = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            dateDisplay.textContent = now.toLocaleDateString('en-US', dateOptions);
+        }
+        
+        // Update time
+        const timeDisplay = document.getElementById('time-display');
+        if (timeDisplay) {
+            const timeOptions = { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                hour12: true 
+            };
+            timeDisplay.textContent = now.toLocaleTimeString('en-US', timeOptions);
+        }
+    }
+
+    // Start date/time updates
+    startDateTimeUpdates() {
+        // Update immediately
+        this.updateDateTime();
+        
+        // Update every second
+        this.dateTimeInterval = setInterval(() => {
+            this.updateDateTime();
+        }, 1000);
+    }
+
+    // Stop date/time updates
+    stopDateTimeUpdates() {
+        if (this.dateTimeInterval) {
+            clearInterval(this.dateTimeInterval);
+            this.dateTimeInterval = null;
+        }
+    }
+
     // Show session warning
     showSessionWarning() {
         const warningDiv = document.createElement('div');
@@ -169,6 +217,7 @@ class AdminDashboard {
     clearSession() {
         sessionStorage.removeItem('adminSessionStart');
         this.clearSessionTimer();
+        this.stopDateTimeUpdates();
         
         // Reset session status display
         const sessionTimeElement = document.getElementById('session-time');
@@ -373,6 +422,7 @@ class AdminDashboard {
         }
         this.loadNewsArticles();
         this.loadMessages();
+        this.startDateTimeUpdates();
     }
 
     // Load dashboard statistics
