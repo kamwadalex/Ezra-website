@@ -2471,6 +2471,17 @@ footer {
     text-decoration: underline;
 }
 
+/* Hide admin portal link on mobile screens for security */
+@media (max-width: 768px) {
+    .footer-admin-link {
+        display: none !important;
+    }
+    
+    .footer-separator {
+        display: none !important;
+    }
+}
+
 /* Upcoming Events Styles */
 .upcoming-events {
     background: #fff;
