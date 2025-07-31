@@ -88,6 +88,41 @@
 .admin-dashboard {
     background: #f8f9fa;
     min-height: 100vh;
+    position: relative;
+}
+
+/* Floating Logout Button */
+.floating-logout-btn {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 1000;
+    display: none;
+}
+
+.mobile-logout-btn {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mobile-logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+}
+
+.mobile-logout-btn i {
+    font-size: 0.8rem;
 }
 
 .admin-hero {
@@ -667,6 +702,17 @@
     .current-time i {
         font-size: 0.7rem;
     }
+    
+    /* Adjust floating logout button for very small screens */
+    .floating-logout-btn {
+        top: 70px;
+        right: 15px;
+    }
+    
+    .mobile-logout-btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.8rem;
+    }
 } 
 
 @media (max-width: 700px) {
@@ -933,5 +979,10 @@
     
     .session-status {
         flex: none;
+    }
+    
+    /* Show floating logout button on mobile */
+    .floating-logout-btn {
+        display: block;
     }
 } 

@@ -249,6 +249,12 @@ class AdminDashboard {
             logoutBtn.addEventListener('click', () => this.handleLogout());
         }
 
+        // Mobile logout button
+        const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
+        if (mobileLogoutBtn) {
+            mobileLogoutBtn.addEventListener('click', () => this.handleLogout());
+        }
+
         // Quick action buttons
         const uploadBtn = document.getElementById('upload-images-btn');
         const addNewsBtn = document.getElementById('add-news-btn');
