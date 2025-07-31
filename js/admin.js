@@ -259,12 +259,12 @@ class AdminDashboard {
         const uploadBtn = document.getElementById('upload-images-btn');
         const addNewsBtn = document.getElementById('add-news-btn');
         const manageGalleryBtn = document.getElementById('manage-gallery-btn');
-        const viewAnalyticsBtn = document.getElementById('view-analytics-btn');
+        const viewMessagesBtn = document.getElementById('view-messages-btn');
 
         if (uploadBtn) uploadBtn.addEventListener('click', () => this.openUploadModal());
         if (addNewsBtn) addNewsBtn.addEventListener('click', () => this.openAddNewsModal());
         if (manageGalleryBtn) manageGalleryBtn.addEventListener('click', () => this.loadAdminGallery());
-        if (viewAnalyticsBtn) viewAnalyticsBtn.addEventListener('click', () => this.showAnalytics());
+        if (viewMessagesBtn) viewMessagesBtn.addEventListener('click', () => this.scrollToMessagesSection());
 
         // Gallery management
         const refreshBtn = document.getElementById('refresh-gallery-btn');
@@ -811,8 +811,13 @@ class AdminDashboard {
     }
 
     // Show analytics (placeholder)
-    showAnalytics() {
-        this.showNotification('Analytics feature coming soon!', 'info');
+    scrollToMessagesSection() {
+        const messagesSection = document.getElementById('messages-management');
+        if (messagesSection) {
+            messagesSection.scrollIntoView({ behavior: 'smooth' });
+            // Also load messages to ensure they're up to date
+            this.loadMessages();
+        }
     }
 
     // Show notification
