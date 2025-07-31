@@ -75,6 +75,34 @@ class GalleryUploader {
                 }
             });
         }
+
+        // Add tap functionality to modal image for mobile
+        const modalImg = document.getElementById('modal-image');
+        if (modalImg) {
+            modalImg.addEventListener('click', (e) => {
+                // Only handle tap on mobile devices
+                if (window.innerWidth <= 768) {
+                    e.stopPropagation(); // Prevent modal close
+                    this.toggleImageInfo();
+                }
+            });
+        }
+
+        // Handle orientation changes on mobile
+        window.addEventListener('resize', () => {
+            const toggleBtn = document.getElementById('toggle-info-btn');
+            if (toggleBtn) {
+                if (window.innerWidth <= 768) {
+                    toggleBtn.style.display = 'none';
+                } else {
+                    // Show button on desktop if there's info to show
+                    const modalInfo = document.querySelector('.image-modal-info');
+                    if (modalInfo && modalInfo.style.display !== 'none') {
+                        toggleBtn.style.display = 'block';
+                    }
+                }
+            }
+        });
     }
 
     // Open upload modal
@@ -480,10 +508,19 @@ class GalleryUploader {
                 if (!hasDescription && isGenericCategory) {
                     modalInfo.style.display = 'none';
                     toggleBtn.style.display = 'none'; // Hide toggle button if no info to show
+                    // Add tappable class for mobile hint
+                    if (window.innerWidth <= 768) {
+                        modalImg.classList.add('tappable');
+                        // Remove hint after 3 seconds
+                        setTimeout(() => {
+                            modalImg.classList.remove('tappable');
+                        }, 3000);
+                    }
                 } else {
                     modalInfo.style.display = 'block';
                     toggleBtn.style.display = 'block';
                     toggleBtn.classList.remove('hidden');
+                    modalImg.classList.remove('tappable');
                 }
             }
 
@@ -505,11 +542,26 @@ class GalleryUploader {
     toggleImageInfo() {
         const modalInfo = document.querySelector('.image-modal-info');
         const toggleBtn = document.getElementById('toggle-info-btn');
+        const modalImg = document.getElementById('modal-image');
         
         if (modalInfo && toggleBtn) {
             const isVisible = modalInfo.style.display !== 'none';
             modalInfo.style.display = isVisible ? 'none' : 'block';
             toggleBtn.classList.toggle('hidden', !isVisible);
+            
+            // Handle mobile tappable hint
+            if (window.innerWidth <= 768 && modalImg) {
+                if (isVisible) {
+                    // Overlay is being hidden, show hint
+                    modalImg.classList.add('tappable');
+                    setTimeout(() => {
+                        modalImg.classList.remove('tappable');
+                    }, 2000);
+                } else {
+                    // Overlay is being shown, remove hint
+                    modalImg.classList.remove('tappable');
+                }
+            }
         }
     }
 

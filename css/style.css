@@ -1633,6 +1633,39 @@ footer {
     border-radius: 10px;
 }
 
+/* Mobile tap indicator */
+@media (max-width: 768px) {
+    .image-modal-content img {
+        cursor: pointer;
+    }
+    
+    /* Add subtle tap hint when overlay is hidden */
+    .image-modal-content img.tappable {
+        position: relative;
+    }
+    
+    .image-modal-content img.tappable::after {
+        content: "Tap to show info";
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        opacity: 0.8;
+        pointer-events: none;
+        animation: fadeInOut 3s ease-in-out;
+    }
+    
+    @keyframes fadeInOut {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 0.8; }
+    }
+}
+
 .image-modal-info {
     position: absolute;
     bottom: 0;
@@ -1707,6 +1740,13 @@ footer {
 
 .toggle-info-btn.hidden {
     opacity: 0.5;
+}
+
+/* Hide toggle button on mobile - use image tap instead */
+@media (max-width: 768px) {
+    .toggle-info-btn {
+        display: none !important;
+    }
 }
 
 /* Notifications */
@@ -1808,12 +1848,7 @@ footer {
         font-size: 1rem;
     }
 
-    .toggle-info-btn {
-        top: 0.5rem;
-        right: 3rem;
-        padding: 0.4rem;
-        font-size: 1rem;
-    }
+
 }
 
 .latest-news {
@@ -2263,12 +2298,7 @@ footer {
         font-size: 0.9rem;
     }
 
-    .toggle-info-btn {
-        top: 0.25rem;
-        right: 2.5rem;
-        padding: 0.3rem;
-        font-size: 0.9rem;
-    }
+
 }
 
 /* Dynamic News Loading States */
