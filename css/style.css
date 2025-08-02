@@ -2667,6 +2667,7 @@ footer {
     max-width: 1200px;
     padding: 2.5rem 2rem;
     text-align: left;
+    color: #333 !important;
 }
 
 .upcoming-events h2 {
@@ -2772,7 +2773,7 @@ footer {
 }
 
 .event-title {
-    color: #2a5298;
+    color: #2a5298 !important;
     font-size: 1.3rem;
     margin-bottom: 1rem;
     font-weight: 700;
@@ -2803,14 +2804,14 @@ footer {
 }
 
 .event-description {
-    color: #444;
+    color: #333 !important;
     font-size: 1rem;
     margin-bottom: 1rem;
     line-height: 1.6;
 }
 
 .event-location {
-    color: #666;
+    color: #555 !important;
     font-size: 0.9rem;
     display: flex;
     align-items: center;
@@ -2893,7 +2894,7 @@ footer {
 .loading-events p,
 .error-events p,
 .no-events p {
-    color: #666;
+    color: #333 !important;
     font-size: 1.1rem;
     margin: 0.5rem 0;
 }
