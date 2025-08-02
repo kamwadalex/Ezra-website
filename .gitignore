@@ -5,6 +5,7 @@
 
 # Firebase config with sensitive data
 js/firebase-config.js
+js/firebase-config.template.js
 
 # IDE files
 .vscode/

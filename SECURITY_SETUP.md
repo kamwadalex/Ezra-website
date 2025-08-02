@@ -12,17 +12,19 @@ The sensitive Firebase configuration has been moved to a separate file `js/fireb
 
 ```
 js/
-├── config.js              # Main configuration (no sensitive data)
-├── firebase-config.js     # Firebase API keys (excluded from Git)
+├── config.js                    # Main configuration (no sensitive data)
+├── firebase-config.js          # Firebase API keys (excluded from Git)
+├── firebase-config.example.js  # Example template (safe to commit)
 └── ...
 
-.gitignore                 # Excludes firebase-config.js from tracking
+.gitignore                      # Excludes firebase-config.js from tracking
 ```
 
 ### 3. Setting Up Firebase Configuration
 
 **For Development:**
-1. Create the file `js/firebase-config.js` with your Firebase configuration:
+1. Copy the example file: `cp js/firebase-config.example.js js/firebase-config.js`
+2. Edit `js/firebase-config.js` and replace the placeholder values with your actual Firebase configuration:
 
 ```javascript
 // Firebase Configuration - This file contains sensitive API keys
@@ -30,7 +32,7 @@ js/
 // This file is excluded in .gitignore
 
 const FIREBASE_CONFIG = {
-    apiKey: "YOUR_API_KEY",
+    apiKey: "YOUR_ACTUAL_API_KEY",
     authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
     projectId: "YOUR_PROJECT_ID",
     storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
@@ -45,7 +47,7 @@ if (typeof window !== 'undefined') {
 }
 ```
 
-2. Replace the placeholder values with your actual Firebase configuration from the Firebase Console.
+3. Replace the placeholder values with your actual Firebase configuration from the Firebase Console.
 
 **For Production:**
 - Consider using environment variables or a secure configuration management system
@@ -105,7 +107,7 @@ When deploying to a hosting service:
 ### 7. Troubleshooting
 
 If you see "Firebase configuration not found" errors:
-1. Ensure `js/firebase-config.js` exists
+1. Ensure `js/firebase-config.js` exists (copy from `firebase-config.example.js`)
 2. Check that the file is being loaded before `js/config.js`
 3. Verify the `FIREBASE_CONFIG` object is properly defined
 4. Check browser console for any JavaScript errors
