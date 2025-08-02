@@ -7,15 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Initialize Firebase if not already initialized
-    if (typeof firebase === 'undefined') {
-        console.error('Firebase not loaded');
+    // Initialize Firebase using centralized function
+    const db = initializeFirebase();
+    
+    if (!db) {
+        console.error('Failed to initialize Firebase');
         showError('Firebase not available');
         return;
     }
-
-    // Get Firestore instance
-    const db = firebase.firestore();
     
     // Load upcoming events
     loadUpcomingEvents();

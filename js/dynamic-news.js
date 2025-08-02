@@ -6,13 +6,11 @@ class DynamicNewsLoader {
         this.loadNews();
     }
 
-    // Initialize Firebase
+    // Initialize Firebase using centralized function
     initializeFirebase() {
-        if (typeof firebase !== 'undefined') {
-            firebase.initializeApp(CONFIG.FIREBASE);
-            this.db = firebase.firestore();
-        } else {
-            console.error('Firebase not loaded');
+        this.db = initializeFirebase();
+        if (!this.db) {
+            console.error('Failed to initialize Firebase');
             this.showError('Failed to load news system');
         }
     }

@@ -26,6 +26,36 @@ const CONFIG = {
     }
 };
 
+// Centralized Firebase initialization
+let firebaseInitialized = false;
+let firestoreDB = null;
+
+function initializeFirebase() {
+    if (firebaseInitialized) {
+        return firestoreDB;
+    }
+    
+    if (typeof firebase === 'undefined') {
+        console.error('Firebase SDK not loaded');
+        return null;
+    }
+    
+    try {
+        // Check if Firebase is already initialized
+        if (!firebase.apps.length) {
+            firebase.initializeApp(CONFIG.FIREBASE);
+        }
+        
+        firestoreDB = firebase.firestore();
+        firebaseInitialized = true;
+        console.log('Firebase initialized successfully');
+        return firestoreDB;
+    } catch (error) {
+        console.error('Error initializing Firebase:', error);
+        return null;
+    }
+}
+
 // Export for use in other files
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = CONFIG;
