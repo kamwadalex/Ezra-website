@@ -15,11 +15,10 @@ class NewsDetailsLoader {
 
     // Initialize Firebase
     initializeFirebase() {
-        if (typeof firebase !== 'undefined') {
-            firebase.initializeApp(CONFIG.FIREBASE);
-            this.db = firebase.firestore();
-        } else {
-            console.error('Firebase not loaded');
+        // Use the centralized Firebase initialization
+        this.db = initializeFirebase();
+        if (!this.db) {
+            console.error('Failed to initialize Firebase for news details');
             this.showError('Failed to load news system');
         }
     }

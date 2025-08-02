@@ -15,12 +15,12 @@ class AdminDashboard {
 
     // Initialize Firebase
     initializeFirebase() {
-        if (typeof firebase !== 'undefined') {
-            firebase.initializeApp(CONFIG.FIREBASE);
-            this.db = firebase.firestore();
-            this.auth = firebase.auth();
+        // Use the centralized Firebase initialization
+        this.db = initializeFirebase();
+        if (!this.db) {
+            console.error('Failed to initialize Firebase for admin');
         } else {
-            console.error('Firebase not loaded');
+            this.auth = firebase.auth();
         }
     }
 

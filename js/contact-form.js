@@ -8,10 +8,9 @@ class ContactFormHandler {
 
     // Initialize Firebase
     initializeFirebase() {
-        if (typeof firebase !== 'undefined') {
-            firebase.initializeApp(CONFIG.FIREBASE);
-            this.db = firebase.firestore();
-        } else {
+        // Use the centralized Firebase initialization
+        this.db = initializeFirebase();
+        if (!this.db) {
             this.showNotification('Failed to connect to server. Please try again later.', true);
         }
     }

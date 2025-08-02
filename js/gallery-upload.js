@@ -13,12 +13,10 @@ class GalleryUploader {
 
     // Initialize Firebase
     initializeFirebase() {
-        // Firebase will be loaded from CDN
-        if (typeof firebase !== 'undefined') {
-            firebase.initializeApp(CONFIG.FIREBASE);
-            this.db = firebase.firestore();
-        } else {
-            console.error('Firebase not loaded');
+        // Use the centralized Firebase initialization
+        this.db = initializeFirebase();
+        if (!this.db) {
+            console.error('Failed to initialize Firebase for gallery');
         }
     }
 
