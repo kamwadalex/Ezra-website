@@ -1279,27 +1279,30 @@ footer {
     opacity: 1;
     z-index: 2;
 }
-.slide-caption {
+.welcome-message {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
-    background: rgba(30,60,114,0.55);
-    padding: 2rem 2.5rem;
-    border-radius: 15px;
     text-align: center;
-    box-shadow: 0 8px 32px rgba(30,60,114,0.18);
     z-index: 3;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
-.slide-caption h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+.welcome-message h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
     font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
 }
-.slide-caption p {
-    font-size: 1.2rem;
+.welcome-message p {
+    font-size: 1.4rem;
     opacity: 0.95;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 .prev, .next {
     cursor: pointer;
@@ -1357,14 +1360,12 @@ footer {
         min-height: 40vh;
         height: 40vh;
     }
-    .slide-caption {
-        padding: 1.2rem 1rem;
+    .welcome-message h1 {
+        font-size: 2rem;
     }
-    .slide-caption h1 {
-        font-size: 1.5rem;
-    }
-    .slide-caption p {
+    .welcome-message p {
         font-size: 1rem;
+        max-width: 400px;
     }
     .prev, .next {
         width: 36px;
@@ -1381,14 +1382,12 @@ footer {
         min-height: 28vh;
         height: 28vh;
     }
-    .slide-caption {
-        padding: 0.7rem 0.5rem;
+    .welcome-message h1 {
+        font-size: 1.5rem;
     }
-    .slide-caption h1 {
-        font-size: 1.1rem;
-    }
-    .slide-caption p {
+    .welcome-message p {
         font-size: 0.9rem;
+        max-width: 300px;
     }
     .prev, .next {
         width: 28px;
@@ -3288,38 +3287,7 @@ header::before {
     opacity: 1;
 }
 
-.slide-caption {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 800px;
-    padding: var(--spacing-xl);
-    background: rgba(248, 246, 240, 0.95);
-    border-radius: 12px;
-    box-shadow: var(--shadow-deep);
-    border: var(--border-gold);
-    backdrop-filter: blur(10px);
-}
 
-.slide-caption h1 {
-    font-family: var(--font-heading);
-    font-size: var(--text-5xl);
-    font-weight: 700;
-    color: var(--navy-blue-dark);
-    margin-bottom: var(--spacing-md);
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    letter-spacing: -0.02em;
-}
-
-.slide-caption p {
-    font-family: var(--font-accent);
-    font-size: var(--text-xl);
-    font-weight: 400;
-    color: var(--charcoal);
-    line-height: 1.6;
-    margin: 0;
-    font-style: italic;
-}
 
 /* ===== ELEGANT BUTTONS ===== */
 .prev, .next {
@@ -3759,17 +3727,13 @@ footer p {
         height: 50px;
     }
     
-    .slide-caption {
-        padding: var(--spacing-lg);
-        margin: var(--spacing-lg);
-    }
-    
-    .slide-caption h1 {
+    .welcome-message h1 {
         font-size: var(--text-3xl);
     }
     
-    .slide-caption p {
+    .welcome-message p {
         font-size: var(--text-lg);
+        max-width: 500px;
     }
     
     .prev, .next {
@@ -3809,12 +3773,13 @@ footer p {
         font-size: var(--text-lg);
     }
     
-    .slide-caption h1 {
+    .welcome-message h1 {
         font-size: var(--text-2xl);
     }
     
-    .slide-caption p {
+    .welcome-message p {
         font-size: var(--text-base);
+        max-width: 300px;
     }
     
     section h2 {
@@ -4028,7 +3993,7 @@ footer p {
 }
 
 /* ===== ELEGANT TEXT SHADOWS ===== */
-.slide-caption h1 {
+.welcome-message h1 {
     text-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
@@ -4040,7 +4005,6 @@ footer p {
 .feature,
 .news-card,
 .event-card,
-.slide-caption,
 .btn-elegant {
     border-radius: 12px;
 }
