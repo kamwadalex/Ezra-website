@@ -1340,29 +1340,7 @@ footer {
 .next {
     right: 24px;
 }
-.slideshow-dots {
-    text-align: center;
-    position: absolute;
-    width: 100%;
-    bottom: 24px;
-    z-index: 5;
-}
-.dot {
-    cursor: pointer;
-    height: 16px;
-    width: 16px;
-    margin: 0 6px;
-    background-color: #fff;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-    transition: background 0.3s, opacity 0.3s;
-    border: 2px solid #764ba2;
-}
-.dot.active, .dot:hover {
-    background-color: #764ba2;
-    opacity: 1;
-}
+
 @media (max-width: 900px) {
     .slideshow-container, .slideshow-hero {
         min-height: 40vh;
@@ -1381,9 +1359,7 @@ footer {
         font-size: 1.3rem;
         margin-top: -18px;
     }
-    .slideshow-dots {
-        bottom: 12px;
-    }
+
 }
 @media (max-width: 600px) {
     .slideshow-container, .slideshow-hero {
@@ -1403,9 +1379,7 @@ footer {
         font-size: 1rem;
         margin-top: -14px;
     }
-    .slideshow-dots {
-        bottom: 6px;
-    }
+
 } 
 
 /* Gallery Page Styles */
@@ -3087,6 +3061,13 @@ footer {
     --text-6xl: 3.75rem;
 }
 
+/* ===== UNIVERSAL RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* ===== SOPHISTICATED TYPOGRAPHY ===== */
 body {
     font-family: var(--font-body);
@@ -3095,6 +3076,8 @@ body {
     color: var(--charcoal);
     background-color: var(--cream);
     letter-spacing: 0.01em;
+    margin: 0;
+    padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -3151,7 +3134,9 @@ header {
     border-bottom: var(--border-gold);
     position: relative;
     border-radius: 0 0 20px 20px;
-    margin: 0 1rem;
+    margin: 0 1rem 0 1rem;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 header::before {
@@ -3167,7 +3152,7 @@ header::before {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: var(--spacing-sm) var(--spacing-lg);
+    padding: 1rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -3177,13 +3162,13 @@ header::before {
 .logo {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: 0.75rem;
     position: relative;
 }
 
 .logo h2 {
     font-family: var(--font-display);
-    font-size: var(--text-2xl);
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-gold);
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
@@ -3215,16 +3200,16 @@ header::before {
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: var(--spacing-lg);
+    gap: 1.5rem;
 }
 
 .nav-menu ul li a {
     font-family: var(--font-body);
     font-weight: 400;
-    font-size: var(--text-base);
+    font-size: 1rem;
     color: var(--cream);
     text-decoration: none;
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: 0.75rem 1rem;
     border-radius: 6px;
     transition: all 0.3s ease;
     position: relative;
@@ -3326,32 +3311,7 @@ header::before {
     right: var(--spacing-lg);
 }
 
-/* ===== SOPHISTICATED DOTS ===== */
-.slideshow-dots {
-    position: absolute;
-    bottom: var(--spacing-lg);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: var(--spacing-sm);
-    z-index: 3;
-}
 
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(212, 175, 55, 0.5);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 2px solid var(--cream);
-}
-
-.dot.active, .dot:hover {
-    background: var(--primary-gold);
-    transform: scale(1.2);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-}
 
 /* ===== ELEGANT SECTIONS ===== */
 section {
