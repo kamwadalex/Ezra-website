@@ -244,29 +244,35 @@
 /* Mobile Navigation Toggle */
 .nav-toggle {
     display: none;
-    background: none;
-    border: none;
+    background: rgba(212, 175, 55, 0.1);
+    border: 2px solid var(--primary-gold);
     cursor: pointer;
     padding: var(--spacing-sm);
     flex-direction: column;
     justify-content: space-around;
-    width: 30px;
-    height: 30px;
-    border-radius: 6px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
     transition: all 0.3s ease;
+    z-index: 1001;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .nav-toggle:hover {
-    background: rgba(212, 175, 55, 0.1);
+    background: rgba(212, 175, 55, 0.2);
+    border-color: var(--primary-gold-light);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    transform: scale(1.05);
 }
 
 .hamburger {
     width: 25px;
     height: 3px;
-    background-color: var(--cream);
+    background-color: var(--primary-gold);
     border-radius: 2px;
     transition: all 0.3s ease;
     transform-origin: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 /* Navigation Menu - now handled by sophisticated design system above */
@@ -712,6 +718,7 @@ footer {
         visibility: hidden;
         transition: all 0.3s ease;
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        z-index: 1000;
     }
     
     .nav-menu.active {
@@ -3137,6 +3144,7 @@ header {
     margin: 0 1rem 0 1rem;
     margin-top: 0;
     padding-top: 0;
+    z-index: 999;
 }
 
 header::before {
