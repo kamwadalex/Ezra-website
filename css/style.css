@@ -321,13 +321,17 @@ main {
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);
 }
 
 .hero p {
     font-size: 1.2rem;
-    opacity: 0.9;
+    opacity: 1;
     max-width: 600px;
     margin: 0 auto;
+    color: #ffffff !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.5);
 }
 
 /* About Page Hero */
@@ -362,13 +366,17 @@ main {
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);
 }
 
 .hero-about p {
     font-size: 1.2rem;
-    opacity: 0.9;
+    opacity: 1;
     max-width: 600px;
     margin: 0 auto;
+    color: #ffffff !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.5);
 }
 
 /* Academics Page Hero */
@@ -403,13 +411,17 @@ main {
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);
 }
 
 .hero-academics p {
     font-size: 1.2rem;
-    opacity: 0.9;
+    opacity: 1;
     max-width: 600px;
     margin: 0 auto;
+    color: #ffffff !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.5);
 }
 
 /* Admissions Page Hero */
@@ -444,13 +456,17 @@ main {
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);
 }
 
 .hero-admissions p {
     font-size: 1.2rem;
-    opacity: 0.9;
+    opacity: 1;
     max-width: 600px;
     margin: 0 auto;
+    color: #ffffff !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.5);
 }
 
 /* Contact Page Hero */
@@ -485,13 +501,17 @@ main {
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);
 }
 
 .hero-contact p {
     font-size: 1.2rem;
-    opacity: 0.9;
+    opacity: 1;
     max-width: 600px;
     margin: 0 auto;
+    color: #ffffff !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.5);
 }
 
 /* Gallery Page Hero */
@@ -526,13 +546,17 @@ main {
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);
 }
 
 .hero-gallery p {
     font-size: 1.2rem;
-    opacity: 0.9;
+    opacity: 1;
     max-width: 600px;
     margin: 0 auto;
+    color: #ffffff !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.5);
 }
 
 /* Student Life Page Hero */
@@ -567,13 +591,17 @@ main {
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);
 }
 
 .hero-student-life p {
     font-size: 1.2rem;
-    opacity: 0.9;
+    opacity: 1;
     max-width: 600px;
     margin: 0 auto;
+    color: #ffffff !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.5);
 }
 
 /* Features section */
@@ -771,6 +799,8 @@ footer {
     .hero-gallery h1,
     .hero-student-life h1 {
         font-size: 2rem;
+        color: #ffffff !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);
     }
     
     .hero p,
@@ -781,6 +811,8 @@ footer {
     .hero-gallery p,
     .hero-student-life p {
         font-size: 1rem;
+        color: #ffffff !important;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.5);
     }
     
     .features h2 {
@@ -823,6 +855,8 @@ footer {
     .hero-gallery h1,
     .hero-student-life h1 {
         font-size: 1.5rem;
+        color: #ffffff !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);
     }
     
     .features h2 {
