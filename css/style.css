@@ -278,6 +278,11 @@ main {
     padding: 0 2rem 2rem 2rem;
 }
 
+/* Remove top padding for homepage slideshow */
+.slideshow-hero {
+    margin-top: -2rem;
+}
+
 /* Hero section - Default */
 .hero {
     position: relative;
@@ -1254,7 +1259,8 @@ footer {
     margin: 0;
     margin-left: calc(-50vw + 50%);
     margin-bottom: 3rem;
-    margin-top: 0rem;
+    margin-top: 0;
+    padding-top: 0;
 }
 .slideshow-container {
     position: relative;
@@ -1284,10 +1290,10 @@ footer {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    color: #fff;
+    color: #ffffff !important;
     text-align: center;
     z-index: 3;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 .welcome-message h1 {
     font-size: 3.5rem;
@@ -1295,6 +1301,7 @@ footer {
     font-weight: 700;
     font-family: 'Playfair Display', serif;
     letter-spacing: 1px;
+    color: #ffffff !important;
 }
 .welcome-message p {
     font-size: 1.4rem;
@@ -1303,6 +1310,7 @@ footer {
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
+    color: #ffffff !important;
 }
 .prev, .next {
     cursor: pointer;
@@ -3272,16 +3280,7 @@ header::before {
     justify-content: center;
 }
 
-.slide::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(27, 54, 93, 0.7) 0%, rgba(15, 31, 58, 0.8) 100%);
-    z-index: 1;
-}
+
 
 .slide.active {
     opacity: 1;
