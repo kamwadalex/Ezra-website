@@ -32,11 +32,21 @@ function initializeFirebase() {
         return null;
     }
     
-    // Get Firebase config from external file
-    const firebaseConfig = window.FIREBASE_CONFIG;
+    // Get Firebase config from external file or use fallback
+    let firebaseConfig = window.FIREBASE_CONFIG;
+    
+    // If external config not found, use fallback for deployment
     if (!firebaseConfig) {
-        console.error('Firebase init: Firebase configuration not found. Make sure firebase-config.js is loaded.');
-        return null;
+        console.log('Firebase init: External config not found, using fallback configuration');
+        firebaseConfig = {
+            apiKey: "AIzaSyAoZq8e2v8Y5tnHon6R1Rr8Im8x92sLRek",
+            authDomain: "ezra-project-33417.firebaseapp.com",
+            projectId: "ezra-project-33417",
+            storageBucket: "ezra-project-33417.firebasestorage.app",
+            messagingSenderId: "546827792030",
+            appId: "1:546827792030:web:d05d360536c7234ef0958f",
+            measurementId: "G-7J9KZMGKM2"
+        };
     }
     
     try {
