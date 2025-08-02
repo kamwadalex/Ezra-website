@@ -174,6 +174,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Back to Top Button Functionality
+    const backToTopBtn = document.getElementById('back-to-top');
+    
+    if (backToTopBtn) {
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Smooth scroll to top when button is clicked
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
     // Console welcome message
     console.log('Welcome to Ezra Memorial Secondary School website!');
     console.log('For any technical support, please contact the web development team.');
