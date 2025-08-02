@@ -9,20 +9,25 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        console.log('News loader: Starting initialization...');
+
         // Initialize Firebase using centralized function
         const db = initializeFirebase();
         
         if (!db) {
-            console.error('Failed to initialize Firebase');
+            console.error('News loader: Failed to initialize Firebase');
             showError('Failed to load news system');
             return;
         }
+
+        console.log('News loader: Firebase initialized successfully');
         
-        // Load news
+        // Load news immediately like events loader
         loadNews();
 
         async function loadNews() {
             try {
+                console.log('News loader: Starting to load news...');
                 showLoading();
                 
                 const snapshot = await db.collection('news')
@@ -30,11 +35,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     .limit(6) // Show latest 6 news articles
                     .get();
 
+                console.log('News loader: Got snapshot, empty:', snapshot.empty);
+
                 if (snapshot.empty) {
+                    console.log('News loader: No news found, showing no news message');
                     showNoNews();
                     return;
                 }
 
+                console.log('News loader: Processing', snapshot.size, 'news articles');
                 newsGrid.innerHTML = '';
                 snapshot.forEach(doc => {
                     const newsData = doc.data();
@@ -42,9 +51,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     newsGrid.appendChild(newsCard);
                 });
 
+                console.log('News loader: Successfully loaded news');
+
             } catch (error) {
-                console.error('Error loading news:', error);
-                showError('Failed to load news articles');
+                console.error('News loader: Error loading news:', error);
+                showError('Failed to load news articles: ' + error.message);
             }
         }
 

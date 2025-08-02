@@ -31,27 +31,38 @@ let firebaseInitialized = false;
 let firestoreDB = null;
 
 function initializeFirebase() {
+    console.log('Firebase init: Starting initialization...');
+    
     if (firebaseInitialized) {
+        console.log('Firebase init: Already initialized, returning existing instance');
         return firestoreDB;
     }
     
     if (typeof firebase === 'undefined') {
-        console.error('Firebase SDK not loaded');
+        console.error('Firebase init: Firebase SDK not loaded');
         return null;
     }
     
     try {
+        console.log('Firebase init: Firebase SDK available, checking apps...');
+        console.log('Firebase init: Current apps:', firebase.apps.length);
+        
         // Check if Firebase is already initialized
         if (!firebase.apps.length) {
+            console.log('Firebase init: No apps found, initializing new app...');
             firebase.initializeApp(CONFIG.FIREBASE);
+            console.log('Firebase init: App initialized successfully');
+        } else {
+            console.log('Firebase init: App already exists, using existing app');
         }
         
+        console.log('Firebase init: Getting Firestore instance...');
         firestoreDB = firebase.firestore();
         firebaseInitialized = true;
-        console.log('Firebase initialized successfully');
+        console.log('Firebase init: Firebase initialized successfully');
         return firestoreDB;
     } catch (error) {
-        console.error('Error initializing Firebase:', error);
+        console.error('Firebase init: Error initializing Firebase:', error);
         return null;
     }
 }
