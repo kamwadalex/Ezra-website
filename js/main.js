@@ -122,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Homepage slideshow functionality
     const slides = document.querySelectorAll('.slideshow-container .slide');
-    const dots = document.querySelectorAll('.slideshow-dots .dot');
     const prevBtn = document.querySelector('.slideshow-container .prev');
     const nextBtn = document.querySelector('.slideshow-container .next');
     let slideIndex = 0;
@@ -132,11 +131,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!slides.length) return;
         slides.forEach((slide, i) => {
             slide.classList.remove('active');
-            dots[i].classList.remove('active');
         });
         slideIndex = (n + slides.length) % slides.length;
         slides[slideIndex].classList.add('active');
-        dots[slideIndex].classList.add('active');
     }
 
     function nextSlide() {
@@ -165,13 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
             prevSlide();
             startSlideShow();
         });
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', function() {
-                stopSlideShow();
-                showSlide(i);
-                startSlideShow();
-            });
-        });
+
     }
 
     // Handle window resize to reset mobile menu
