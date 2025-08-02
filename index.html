@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ezra Memorial Secondary School</title>
+    
+    <!-- Classic Google Fonts for sophisticated typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -121,6 +127,7 @@
 
         <section class="news-cards latest-news">
             <h2>Latest News</h2>
+            <div class="section-divider"></div>
             <div class="news-cards-grid" id="news-cards-grid">
                 <!-- News cards will be loaded dynamically from Firestore -->
                 <div class="loading-news">
@@ -132,16 +139,26 @@
 
         <section class="features">
             <h2>Why Choose Ezra Memorial Secondary School?</h2>
+            <div class="section-divider"></div>
             <div class="feature-grid">
                 <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
                     <h3>Academic Excellence</h3>
                     <p>Comprehensive curriculum designed for success and personal growth</p>
                 </div>
                 <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
                     <h3>Experienced Faculty</h3>
                     <p>Dedicated teachers committed to student development and achievement</p>
                 </div>
                 <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
                     <h3>Modern Facilities</h3>
                     <p>State-of-the-art learning environments and resources</p>
                 </div>
@@ -150,6 +167,7 @@
 
         <section class="upcoming-events">
             <h2>Upcoming Events</h2>
+            <div class="section-divider"></div>
             <div class="events-grid" id="events-grid">
                 <!-- Events will be loaded dynamically from Firestore -->
                 <div class="loading-events">
