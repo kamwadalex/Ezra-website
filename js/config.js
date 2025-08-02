@@ -7,17 +7,6 @@ const CONFIG = {
         API_URL: 'https://api.cloudinary.com/v1_1/dl8db2rpk/image/upload'
     },
     
-    // Firebase Configuration
-      FIREBASE: {
-        apiKey: "AIzaSyAoZq8e2v8Y5tnHon6R1Rr8Im8x92sLRek",
-        authDomain: "ezra-project-33417.firebaseapp.com",
-        projectId: "ezra-project-33417",
-        storageBucket: "ezra-project-33417.firebasestorage.app",
-        messagingSenderId: "546827792030",
-        appId: "1:546827792030:web:d05d360536c7234ef0958f",
-        measurementId: "G-7J9KZMGKM2"
-    },  
-    
     // Gallery Configuration
     GALLERY: {
         MAX_FILE_SIZE: 5 * 1024 * 1024, // 5MB
@@ -43,6 +32,13 @@ function initializeFirebase() {
         return null;
     }
     
+    // Get Firebase config from external file
+    const firebaseConfig = window.FIREBASE_CONFIG;
+    if (!firebaseConfig) {
+        console.error('Firebase init: Firebase configuration not found. Make sure firebase-config.js is loaded.');
+        return null;
+    }
+    
     try {
         console.log('Firebase init: Firebase SDK available, checking apps...');
         console.log('Firebase init: Current apps:', firebase.apps.length);
@@ -50,7 +46,7 @@ function initializeFirebase() {
         // Check if Firebase is already initialized
         if (!firebase.apps.length) {
             console.log('Firebase init: No apps found, initializing new app...');
-            firebase.initializeApp(CONFIG.FIREBASE);
+            firebase.initializeApp(firebaseConfig);
             console.log('Firebase init: App initialized successfully');
         } else {
             console.log('Firebase init: App already exists, using existing app');
