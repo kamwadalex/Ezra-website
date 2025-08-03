@@ -3717,6 +3717,16 @@ footer p {
         display: none !important;
         pointer-events: none !important;
     }
+    
+    /* Show mobile rights text on mobile */
+    .mobile-rights-text {
+        display: block !important;
+    }
+}
+
+/* Hide mobile rights text on desktop/tablet */
+.mobile-rights-text {
+    display: none;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
