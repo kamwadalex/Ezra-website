@@ -348,6 +348,13 @@ class AdminDashboard {
         if (galleryUploadToggle) {
             galleryUploadToggle.addEventListener('change', (e) => this.handleGalleryUploadToggle(e));
         }
+
+        // --- CONTACT INFORMATION MANAGEMENT ---
+        const manageContactBtn = document.getElementById('manage-contact-btn');
+        const saveContactInfoBtn = document.getElementById('save-contact-info-btn');
+        
+        if (manageContactBtn) manageContactBtn.addEventListener('click', () => this.scrollToContactSection());
+        if (saveContactInfoBtn) saveContactInfoBtn.addEventListener('click', (e) => this.saveContactInformation(e));
     }
 
     // Check authentication status
@@ -436,6 +443,7 @@ class AdminDashboard {
         this.loadMessages();
         this.startDateTimeUpdates();
         this.loadSiteSettings();
+        this.loadContactInformation();
     }
 
     // Load dashboard statistics
@@ -1295,6 +1303,75 @@ class AdminDashboard {
             
             // Revert the toggle if save failed
             event.target.checked = !isEnabled;
+        }
+    }
+
+    // Contact Information Management
+    async loadContactInformation() {
+        if (!this.db) return;
+
+        try {
+            const contactDoc = await this.db.collection('settings').doc('contact').get();
+            
+            if (contactDoc.exists) {
+                const contactData = contactDoc.data();
+                
+                // Populate form fields
+                document.getElementById('contact-phone-1').value = contactData.phone1 || '';
+                document.getElementById('contact-phone-2').value = contactData.phone2 || '';
+                document.getElementById('contact-email').value = contactData.email || '';
+                document.getElementById('contact-address').value = contactData.address || '';
+                document.getElementById('contact-map-link').value = contactData.mapLink || '';
+            } else {
+                // Set default values if no contact info exists
+                document.getElementById('contact-phone-1').value = '+256 758 991782';
+                document.getElementById('contact-phone-2').value = '+256 772 692685';
+                document.getElementById('contact-email').value = '';
+                document.getElementById('contact-address').value = 'Ezra Memorial SS\nTirinyi, Kibuku District\nP.O. Box 1948, Mbale.';
+                document.getElementById('contact-map-link').value = 'https://maps.app.goo.gl/5UtyyCNAeNcFmEZB9';
+            }
+        } catch (error) {
+            console.error('Error loading contact information:', error);
+            this.showNotification('Failed to load contact information', 'error');
+        }
+    }
+
+    async saveContactInformation(event) {
+        event.preventDefault();
+        
+        if (!this.db) return;
+
+        try {
+            const contactData = {
+                phone1: document.getElementById('contact-phone-1').value.trim(),
+                phone2: document.getElementById('contact-phone-2').value.trim(),
+                email: document.getElementById('contact-email').value.trim(),
+                address: document.getElementById('contact-address').value.trim(),
+                mapLink: document.getElementById('contact-map-link').value.trim(),
+                updatedAt: new Date(),
+                updatedBy: this.currentUser ? this.currentUser.email : 'admin'
+            };
+
+            // Validate required fields
+            if (!contactData.phone1 || !contactData.email || !contactData.address || !contactData.mapLink) {
+                this.showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+
+            // Save to Firestore
+            await this.db.collection('settings').doc('contact').set(contactData);
+
+            this.showNotification('Contact information saved successfully', 'success');
+        } catch (error) {
+            console.error('Error saving contact information:', error);
+            this.showNotification('Failed to save contact information', 'error');
+        }
+    }
+
+    scrollToContactSection() {
+        const contactSection = document.getElementById('contact-management');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
         }
     }
 }

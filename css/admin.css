@@ -1191,4 +1191,67 @@ input:checked + .toggle-slider:before {
         align-items: flex-start;
         gap: 0.5rem;
     }
+}
+
+/* Contact Information Management Styles */
+.contact-info-form {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+}
+
+.contact-info-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contact-info-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.contact-info-form input,
+.contact-info-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+}
+
+.contact-info-form input:focus,
+.contact-info-form textarea:focus {
+    outline: none;
+    border-color: #1e3c72;
+    box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.1);
+}
+
+.contact-info-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.contact-info-form input[type="tel"] {
+    font-family: monospace;
+    letter-spacing: 0.5px;
+}
+
+.contact-info-form input[type="email"] {
+    font-family: inherit;
+}
+
+@media (max-width: 768px) {
+    .contact-info-form {
+        padding: 1.5rem;
+    }
+    
+    .contact-info-form .form-group {
+        margin-bottom: 1rem;
+    }
 } 

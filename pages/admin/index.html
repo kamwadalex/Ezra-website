@@ -166,6 +166,10 @@
                         <i class="fas fa-envelope"></i>
                         View Messages
                     </button>
+                    <button class="action-btn" id="manage-contact-btn">
+                        <i class="fas fa-phone"></i>
+                        Manage Contact Info
+                    </button>
                 </div>
             </section>
 
@@ -221,6 +225,40 @@
                 </div>
                 <div class="messages-list" id="messages-list">
                     <!-- Messages will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Contact Information Management -->
+            <section class="admin-section" id="contact-management">
+                <h2>Contact Information Management</h2>
+                <div class="admin-controls">
+                    <button class="admin-btn primary" id="save-contact-info-btn">
+                        <i class="fas fa-save"></i> Save Contact Information
+                    </button>
+                </div>
+                <div class="contact-info-form">
+                    <div class="form-group">
+                        <label for="contact-phone-1">Primary Phone Number</label>
+                        <input type="tel" id="contact-phone-1" name="phone1" placeholder="+256 758 991782" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-phone-2">Secondary Phone Number (Optional)</label>
+                        <input type="tel" id="contact-phone-2" name="phone2" placeholder="+256 772 692685">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email Address</label>
+                        <input type="email" id="contact-email" name="email" placeholder="info@ezramemorialss.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-address">School Address</label>
+                        <textarea id="contact-address" name="address" rows="4" required>Ezra Memorial SS
+Tirinyi, Kibuku District
+P.O. Box 1948, Mbale.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-map-link">Google Maps Link</label>
+                        <input type="url" id="contact-map-link" name="mapLink" placeholder="https://maps.app.goo.gl/5UtyyCNAeNcFmEZB9" required>
+                    </div>
                 </div>
             </section>
 
