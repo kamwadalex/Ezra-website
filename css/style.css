@@ -3174,12 +3174,16 @@ header {
     background: linear-gradient(135deg, var(--navy-blue) 0%, var(--navy-blue-dark) 100%);
     box-shadow: var(--shadow-deep);
     border-bottom: var(--border-gold);
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     border-radius: 0 0 20px 20px;
     margin: 0 1rem 0 1rem;
     margin-top: 0;
     padding-top: 0;
     z-index: 999;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
 }
 
 header::before {

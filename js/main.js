@@ -86,14 +86,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Add scroll effect to header
+    // Scroll-based navigation visibility
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+    const scrollThreshold = 100;
+    
     window.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        if (window.scrollY > 100) {
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Change header background on scroll
+        if (currentScrollTop > scrollThreshold) {
             header.style.backgroundColor = 'rgba(30, 60, 114, 0.95)';
         } else {
             header.style.backgroundColor = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
         }
+        
+        // Show/hide navigation based on scroll direction
+        if (currentScrollTop > lastScrollTop && currentScrollTop > scrollThreshold) {
+            // Scrolling down - hide navigation
+            header.style.transform = 'translateY(-100%)';
+            header.style.transition = 'transform 0.3s ease-in-out';
+        } else if (currentScrollTop < lastScrollTop) {
+            // Scrolling up - show navigation
+            header.style.transform = 'translateY(0)';
+            header.style.transition = 'transform 0.3s ease-in-out';
+        }
+        
+        lastScrollTop = currentScrollTop;
     });
 
     // Add loading animation to features
