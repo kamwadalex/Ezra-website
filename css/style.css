@@ -3711,6 +3711,14 @@ footer p {
     border-bottom: none !important;
 }
 
+/* Hide admin portal link on mobile screens for security */
+@media (max-width: 768px) {
+    .footer-admin-link {
+        display: none !important;
+        pointer-events: none !important;
+    }
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
     :root {
