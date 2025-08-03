@@ -16,12 +16,35 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    // Load upcoming events
-    loadUpcomingEvents();
+    // Load upcoming events with retry mechanism and small delay for Firebase readiness
+    setTimeout(() => {
+        loadUpcomingEvents();
+    }, 100);
 
-    async function loadUpcomingEvents() {
+    async function loadUpcomingEvents(retryCount = 0) {
+        if (!db) {
+            console.error('Firebase not initialized for events loading');
+            if (retryCount < 3) {
+                console.log(`Retrying events loading in 1 second... (attempt ${retryCount + 1})`);
+                setTimeout(() => loadUpcomingEvents(retryCount + 1), 1000);
+            } else {
+                showError('Firebase not available');
+            }
+            return;
+        }
+        
+        if (!eventsGrid) {
+            console.error('Events grid element not found');
+            if (retryCount < 3) {
+                console.log(`Retrying events loading in 1 second... (attempt ${retryCount + 1})`);
+                setTimeout(() => loadUpcomingEvents(retryCount + 1), 1000);
+            }
+            return;
+        }
+        
         try {
             showLoading();
+            console.log('Loading upcoming events...');
             
             // Get current date
             const now = new Date();
@@ -33,6 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 .orderBy('date', 'asc')
                 .limit(6) // Limit to 6 upcoming events
                 .get();
+
+            console.log('Events snapshot received, empty:', eventsSnapshot.empty, 'size:', eventsSnapshot.size);
 
             if (eventsSnapshot.empty) {
                 showNoEvents();
@@ -50,10 +75,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             displayEvents(events);
+            console.log('Successfully loaded', events.length, 'events');
 
         } catch (error) {
             console.error('Error loading events:', error);
-            showError('Failed to load upcoming events');
+            if (retryCount < 3) {
+                console.log(`Retrying events loading in 2 seconds... (attempt ${retryCount + 1})`);
+                setTimeout(() => loadUpcomingEvents(retryCount + 1), 2000);
+            } else {
+                showError('Failed to load upcoming events');
+            }
         }
     }
 

@@ -445,24 +445,26 @@ class AdminDashboard {
             adminName.textContent = this.currentUser.displayName || this.currentUser.email || 'Administrator';
         }
         
-        // Use setTimeout to ensure DOM is ready and Firebase is initialized
-        setTimeout(() => {
-            // Check if Firebase is ready
-            if (this.db) {
-                this.loadNewsArticles();
-                this.loadMessages();
-                this.loadSiteSettings();
-                this.loadContactInformation();
-            } else {
-                console.error('Firebase not ready, retrying in 500ms...');
-                setTimeout(() => {
-                    this.loadNewsArticles();
-                    this.loadMessages();
-                    this.loadSiteSettings();
-                    this.loadContactInformation();
-                }, 500);
-            }
-        }, 100);
+                            // Use setTimeout to ensure DOM is ready and Firebase is initialized
+                    setTimeout(() => {
+                        // Check if Firebase is ready
+                        if (this.db) {
+                            this.loadNewsArticles();
+                            this.loadMessages();
+                            this.loadSiteSettings();
+                            this.loadContactInformation();
+                            this.loadEvents(); // Add events loading
+                        } else {
+                            console.error('Firebase not ready, retrying in 500ms...');
+                            setTimeout(() => {
+                                this.loadNewsArticles();
+                                this.loadMessages();
+                                this.loadSiteSettings();
+                                this.loadContactInformation();
+                                this.loadEvents(); // Add events loading
+                            }, 500);
+                        }
+                    }, 100);
         
         this.startDateTimeUpdates();
     }
@@ -1123,16 +1125,35 @@ class AdminDashboard {
         }
     }
 
-    async loadEvents() {
+    async loadEvents(retryCount = 0) {
+        if (!this.db) {
+            console.error('Firebase not initialized for events loading');
+            if (retryCount < 3) {
+                console.log(`Retrying events loading in 1 second... (attempt ${retryCount + 1})`);
+                setTimeout(() => this.loadEvents(retryCount + 1), 1000);
+            }
+            return;
+        }
+        
         const eventsList = document.getElementById('events-list');
-        if (!eventsList) return;
+        if (!eventsList) {
+            console.error('Events list element not found');
+            if (retryCount < 3) {
+                console.log(`Retrying events loading in 1 second... (attempt ${retryCount + 1})`);
+                setTimeout(() => this.loadEvents(retryCount + 1), 1000);
+            }
+            return;
+        }
 
         try {
             eventsList.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin"></i> Loading events...</div>';
+            console.log('Loading events...');
             
             const eventsSnapshot = await this.db.collection('events')
                 .orderBy('date', 'desc')
                 .get();
+
+            console.log('Events snapshot received, empty:', eventsSnapshot.empty, 'size:', eventsSnapshot.size);
 
             if (eventsSnapshot.empty) {
                 eventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #666;">No events found</div>';
@@ -1145,10 +1166,17 @@ class AdminDashboard {
                 const eventCard = this.createEventCard(eventData, doc.id);
                 eventsList.appendChild(eventCard);
             });
+            
+            console.log('Successfully loaded', eventsSnapshot.size, 'events');
 
         } catch (error) {
             console.error('Error loading events:', error);
-            eventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #dc3545;">Failed to load events</div>';
+            if (retryCount < 3) {
+                console.log(`Retrying events loading in 2 seconds... (attempt ${retryCount + 1})`);
+                setTimeout(() => this.loadEvents(retryCount + 1), 2000);
+            } else {
+                eventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #dc3545;">Failed to load events</div>';
+            }
         }
     }
 
