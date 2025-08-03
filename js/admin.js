@@ -444,11 +444,27 @@ class AdminDashboard {
         if (adminName && this.currentUser) {
             adminName.textContent = this.currentUser.displayName || this.currentUser.email || 'Administrator';
         }
-        this.loadNewsArticles();
-        this.loadMessages();
+        
+        // Use setTimeout to ensure DOM is ready and Firebase is initialized
+        setTimeout(() => {
+            // Check if Firebase is ready
+            if (this.db) {
+                this.loadNewsArticles();
+                this.loadMessages();
+                this.loadSiteSettings();
+                this.loadContactInformation();
+            } else {
+                console.error('Firebase not ready, retrying in 500ms...');
+                setTimeout(() => {
+                    this.loadNewsArticles();
+                    this.loadMessages();
+                    this.loadSiteSettings();
+                    this.loadContactInformation();
+                }, 500);
+            }
+        }, 100);
+        
         this.startDateTimeUpdates();
-        this.loadSiteSettings();
-        this.loadContactInformation();
     }
 
     // Load dashboard statistics
@@ -956,25 +972,60 @@ class AdminDashboard {
     }
 
     // --- NEWS MANAGEMENT ---
-    async loadNewsArticles() {
-        if (!this.db) return;
+    async loadNewsArticles(retryCount = 0) {
+        if (!this.db) {
+            console.error('Firebase not initialized for news loading');
+            if (retryCount < 3) {
+                console.log(`Retrying news loading in 1 second... (attempt ${retryCount + 1})`);
+                setTimeout(() => this.loadNewsArticles(retryCount + 1), 1000);
+            }
+            return;
+        }
+        
         const newsList = document.getElementById('news-list');
-        if (!newsList) return;
+        if (!newsList) {
+            console.error('News list element not found');
+            if (retryCount < 3) {
+                console.log(`Retrying news loading in 1 second... (attempt ${retryCount + 1})`);
+                setTimeout(() => this.loadNewsArticles(retryCount + 1), 1000);
+            }
+            return;
+        }
+        
+        // Show loading state
         newsList.innerHTML = '<div class="loading-news"><i class="fas fa-spinner fa-spin"></i> Loading news...</div>';
+        
         try {
+            console.log('Loading news articles...');
             const snapshot = await this.db.collection('news').orderBy('publishedAt', 'desc').get();
+            
+            console.log('News snapshot received, empty:', snapshot.empty, 'size:', snapshot.size);
+            
             if (snapshot.empty) {
                 newsList.innerHTML = '<div class="no-news"><i class="fas fa-newspaper"></i> No news articles yet.</div>';
                 return;
             }
+            
+            // Clear the loading state
             newsList.innerHTML = '';
+            
+            // Process each news article
             snapshot.forEach(doc => {
                 const news = doc.data();
                 const card = this.createNewsArticleCard(news, doc.id);
                 newsList.appendChild(card);
             });
+            
+            console.log('Successfully loaded', snapshot.size, 'news articles');
+            
         } catch (error) {
-            newsList.innerHTML = '<div class="error-news"><i class="fas fa-exclamation-triangle"></i> Failed to load news articles.</div>';
+            console.error('Error loading news articles:', error);
+            if (retryCount < 3) {
+                console.log(`Retrying news loading in 2 seconds... (attempt ${retryCount + 1})`);
+                setTimeout(() => this.loadNewsArticles(retryCount + 1), 2000);
+            } else {
+                newsList.innerHTML = '<div class="error-news"><i class="fas fa-exclamation-triangle"></i> Failed to load news articles.</div>';
+            }
         }
     }
 
