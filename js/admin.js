@@ -258,12 +258,17 @@ class AdminDashboard {
         // Quick action buttons
         const uploadBtn = document.getElementById('upload-images-btn');
         const addNewsBtn = document.getElementById('add-news-btn');
+        const manageNewsBtn = document.getElementById('manage-news-btn');
         const manageGalleryBtn = document.getElementById('manage-gallery-btn');
         const viewMessagesBtn = document.getElementById('view-messages-btn');
 
         if (uploadBtn) uploadBtn.addEventListener('click', () => this.openUploadModal());
         if (addNewsBtn) addNewsBtn.addEventListener('click', () => this.openAddNewsModal());
-        if (manageGalleryBtn) manageGalleryBtn.addEventListener('click', () => this.loadAdminGallery());
+        if (manageNewsBtn) manageNewsBtn.addEventListener('click', () => this.scrollToNewsSection());
+        if (manageGalleryBtn) manageGalleryBtn.addEventListener('click', () => {
+            this.loadAdminGallery();
+            this.scrollToGallerySection();
+        });
         if (viewMessagesBtn) viewMessagesBtn.addEventListener('click', () => this.scrollToMessagesSection());
 
         // Gallery management
@@ -1372,6 +1377,20 @@ class AdminDashboard {
         const contactSection = document.getElementById('contact-management');
         if (contactSection) {
             contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    scrollToGallerySection() {
+        const gallerySection = document.getElementById('gallery-management');
+        if (gallerySection) {
+            gallerySection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    scrollToNewsSection() {
+        const newsSection = document.getElementById('news-management');
+        if (newsSection) {
+            newsSection.scrollIntoView({ behavior: 'smooth' });
         }
     }
 }
