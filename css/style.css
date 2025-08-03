@@ -282,11 +282,13 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem 2rem 2rem;
+    /* Add top padding to account for fixed header */
+    padding-top: 120px; /* Adjust this value based on your header height */
 }
 
 /* Remove top padding for homepage slideshow */
 .slideshow-hero {
-    margin-top: -2rem;
+    margin-top: -120px; /* Adjust to match the main padding-top */
 }
 
 /* Hero section - Default */
@@ -300,7 +302,7 @@ main {
     margin-bottom: 3rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     overflow: hidden;
-    margin-top: 3rem;
+    margin-top: 0; /* Remove top margin since main has padding */
 }
 
 .hero::before {
@@ -345,7 +347,7 @@ main {
     margin-bottom: 3rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     overflow: hidden;
-    margin-top: 3rem;
+    margin-top: 0; /* Remove top margin since main has padding */
 }
 
 .hero-about::before {
@@ -390,7 +392,7 @@ main {
     margin-bottom: 3rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     overflow: hidden;
-    margin-top: 3rem;
+    margin-top: 0; /* Remove top margin since main has padding */
 }
 
 .hero-academics::before {
@@ -435,7 +437,7 @@ main {
     margin-bottom: 3rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     overflow: hidden;
-    margin-top: 3rem;
+    margin-top: 0; /* Remove top margin since main has padding */
 }
 
 .hero-admissions::before {
@@ -480,7 +482,7 @@ main {
     margin-bottom: 3rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     overflow: hidden;
-    margin-top: 3rem;
+    margin-top: 0; /* Remove top margin since main has padding */
 }
 
 .hero-contact::before {
@@ -525,7 +527,7 @@ main {
     margin-bottom: 3rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     overflow: hidden;
-    margin-top: 3rem;
+    margin-top: 0; /* Remove top margin since main has padding */
 }
 
 .hero-gallery::before {
@@ -570,7 +572,7 @@ main {
     margin-bottom: 3rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     overflow: hidden;
-    margin-top: 3rem;
+    margin-top: 0; /* Remove top margin since main has padding */
 }
 
 .hero-student-life::before {
@@ -826,6 +828,11 @@ footer {
     
     main {
         padding: 1rem;
+        padding-top: 100px; /* Reduce padding for smaller header on mobile */
+    }
+    
+    .slideshow-hero {
+        margin-top: -100px; /* Adjust to match the main padding-top */
     }
 }
 
@@ -862,6 +869,14 @@ footer {
     
     .features h2 {
         font-size: 1.5rem;
+    }
+    
+    main {
+        padding-top: 80px; /* Further reduce padding for very small screens */
+    }
+    
+    .slideshow-hero {
+        margin-top: -80px; /* Adjust to match the main padding-top */
     }
     
     .nav-menu ul li a {
