@@ -105,6 +105,12 @@ class GalleryUploader {
 
     // Open upload modal
     openUploadModal() {
+        // Check if upload is enabled
+        if (window.gallerySettings && !window.gallerySettings.isUploadEnabled()) {
+            this.showNotification('Upload functionality is currently disabled by the administrator.', 'error');
+            return;
+        }
+
         const modal = document.getElementById('upload-modal');
         if (modal) {
             modal.style.display = 'flex';
@@ -204,6 +210,12 @@ class GalleryUploader {
     // Handle upload form submission
     async handleUpload(event) {
         event.preventDefault();
+        
+        // Check if upload is enabled
+        if (window.gallerySettings && !window.gallerySettings.isUploadEnabled()) {
+            this.showNotification('Upload functionality is currently disabled by the administrator.', 'error');
+            return;
+        }
         
         const fileInput = document.getElementById('file-input');
         const files = Array.from(fileInput.files);

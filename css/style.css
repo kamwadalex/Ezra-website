@@ -718,7 +718,8 @@ footer {
         margin-bottom: 0.2rem;
     }
     .school-logo {
-        height: 36px;
+        height: 42px;
+        width: 42px;
     }
     .logo h2 {
         font-size: 1rem;
@@ -1537,6 +1538,11 @@ footer {
     background: white;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.upload-section.hidden {
+    display: none !important;
 }
 
 .upload-btn {
@@ -2640,22 +2646,16 @@ footer {
 
 
 .footer-admin-link {
-    color: #764ba2;
+    color: inherit;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
+    font-weight: inherit;
+    transition: none;
+    cursor: pointer;
 }
 
 .footer-admin-link:hover {
-    color: #2a5298;
-    text-decoration: underline;
-}
-
-/* Hide admin portal link on mobile screens for security */
-@media (max-width: 768px) {
-    .footer-admin-link {
-        display: none !important;
-    }
+    color: inherit;
+    text-decoration: none;
 }
 
 /* Upcoming Events Styles */
@@ -3224,8 +3224,8 @@ header::before {
 }
 
 .school-logo {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     border: 3px solid var(--primary-gold);
     box-shadow: var(--shadow-gold);
@@ -3698,16 +3698,17 @@ footer p {
 }
 
 .footer-admin-link {
-    color: var(--primary-gold);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid transparent;
+    color: inherit !important;
+    text-decoration: none !important;
+    font-weight: inherit !important;
+    transition: none !important;
+    border-bottom: none !important;
 }
 
 .footer-admin-link:hover {
-    color: var(--primary-gold-light);
-    border-bottom-color: var(--primary-gold-light);
+    color: inherit !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -3727,8 +3728,8 @@ footer p {
     }
     
     .school-logo {
-        width: 50px;
-        height: 50px;
+        width: 58px;
+        height: 58px;
     }
     
     .welcome-message h1 {

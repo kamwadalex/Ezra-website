@@ -135,11 +135,16 @@
 .admin-hero h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-weight: 700;
 }
 
 .admin-hero p {
     font-size: 1.2rem;
-    opacity: 0.9;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    font-weight: 500;
 }
 
 .admin-info-ribbon {
@@ -1039,6 +1044,127 @@
     font-size: 0.8rem;
 }
 
+/* Site Settings Styles */
+.settings-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.setting-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 2rem;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.setting-card:hover {
+    border-color: #1e3c72;
+    box-shadow: 0 4px 15px rgba(30, 60, 114, 0.1);
+}
+
+.setting-header {
+    margin-bottom: 1.5rem;
+}
+
+.setting-header h3 {
+    color: #1e3c72;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.setting-header h3 i {
+    color: #764ba2;
+}
+
+.setting-header p {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.setting-control {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.setting-status {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.setting-status.enabled {
+    color: #28a745;
+}
+
+.setting-status.disabled {
+    color: #dc3545;
+}
+
+.setting-description {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    border-left: 4px solid #1e3c72;
+}
+
+.setting-description p {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: #28a745;
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(26px);
+}
+
 /* Mobile responsive admin footer */
 @media (max-width: 768px) {
     .admin-footer-content {
@@ -1054,5 +1180,15 @@
     .admin-footer-link {
         font-size: 0.8rem;
         padding: 0.4rem 0.8rem;
+    }
+    
+    .setting-card {
+        padding: 1.5rem;
+    }
+    
+    .setting-control {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
     }
 } 

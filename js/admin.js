@@ -342,6 +342,12 @@ class AdminDashboard {
         if (refreshNewsBtn) {
             refreshNewsBtn.addEventListener('click', () => this.loadNewsArticles());
         }
+
+        // Settings toggle
+        const galleryUploadToggle = document.getElementById('gallery-upload-toggle');
+        if (galleryUploadToggle) {
+            galleryUploadToggle.addEventListener('change', (e) => this.handleGalleryUploadToggle(e));
+        }
     }
 
     // Check authentication status
@@ -429,6 +435,7 @@ class AdminDashboard {
         this.loadNewsArticles();
         this.loadMessages();
         this.startDateTimeUpdates();
+        this.loadSiteSettings();
     }
 
     // Load dashboard statistics
@@ -1220,6 +1227,74 @@ class AdminDashboard {
                 console.error('Error deleting event:', error);
                 this.showNotification('Failed to delete event', 'error');
             }
+        }
+    }
+
+    // Load site settings
+    async loadSiteSettings() {
+        if (!this.db) return;
+
+        try {
+            const settingsDoc = await this.db.collection('settings').doc('gallery').get();
+            const galleryUploadToggle = document.getElementById('gallery-upload-toggle');
+            const galleryUploadStatus = document.getElementById('gallery-upload-status');
+
+            if (settingsDoc.exists) {
+                const settings = settingsDoc.data();
+                const isEnabled = settings.uploadEnabled !== false; // Default to true if not set
+
+                if (galleryUploadToggle) {
+                    galleryUploadToggle.checked = isEnabled;
+                }
+                if (galleryUploadStatus) {
+                    galleryUploadStatus.textContent = isEnabled ? 'Enabled' : 'Disabled';
+                    galleryUploadStatus.className = `setting-status ${isEnabled ? 'enabled' : 'disabled'}`;
+                }
+            } else {
+                // Default to enabled if no settings exist
+                if (galleryUploadToggle) {
+                    galleryUploadToggle.checked = true;
+                }
+                if (galleryUploadStatus) {
+                    galleryUploadStatus.textContent = 'Enabled';
+                    galleryUploadStatus.className = 'setting-status enabled';
+                }
+            }
+        } catch (error) {
+            console.error('Error loading site settings:', error);
+            this.showNotification('Failed to load site settings', 'error');
+        }
+    }
+
+    // Handle gallery upload toggle
+    async handleGalleryUploadToggle(event) {
+        const isEnabled = event.target.checked;
+        const statusElement = document.getElementById('gallery-upload-status');
+
+        try {
+            // Save setting to Firestore
+            await this.db.collection('settings').doc('gallery').set({
+                uploadEnabled: isEnabled,
+                updatedAt: new Date(),
+                updatedBy: this.currentUser ? this.currentUser.email : 'admin'
+            });
+
+            // Update status display
+            if (statusElement) {
+                statusElement.textContent = isEnabled ? 'Enabled' : 'Disabled';
+                statusElement.className = `setting-status ${isEnabled ? 'enabled' : 'disabled'}`;
+            }
+
+            this.showNotification(
+                `Gallery upload ${isEnabled ? 'enabled' : 'disabled'} successfully`, 
+                'success'
+            );
+        } catch (error) {
+            console.error('Error updating gallery upload setting:', error);
+            this.showNotification('Failed to update setting', 'error');
+            
+            // Revert the toggle if save failed
+            event.target.checked = !isEnabled;
         }
     }
 }
