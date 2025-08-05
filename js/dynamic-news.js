@@ -103,15 +103,10 @@ document.addEventListener('DOMContentLoaded', function() {
             excerpt.className = 'news-card-excerpt';
             excerpt.textContent = newsData.excerpt || truncateText(newsData.content, 150);
 
-            // Create date and author
+            // Create date
             const date = document.createElement('p');
             date.className = 'news-date';
             date.textContent = publishDate;
-
-            // Create author info
-            const author = document.createElement('p');
-            author.className = 'news-author';
-            author.textContent = `By ${newsData.author || newsData.publishedBy || 'School Administration'}`;
 
             // Create read more button
             const readMoreBtn = document.createElement('a');
@@ -122,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Assemble the card
             content.appendChild(title);
             content.appendChild(date);
-            content.appendChild(author);
             content.appendChild(excerpt);
             content.appendChild(readMoreBtn);
 
