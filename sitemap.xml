@@ -10,42 +10,42 @@
   
   <!-- Main Pages -->
   <url>
-    <loc>https://ezramemorialss.netlify.app/pages/about/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/about/index.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://ezramemorialss.netlify.app/pages/academics/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/academics/index.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://ezramemorialss.netlify.app/pages/admissions/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/admissions/index.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://ezramemorialss.netlify.app/pages/student-life/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/student-life/index.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://ezramemorialss.netlify.app/pages/gallery/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/gallery/index.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://ezramemorialss.netlify.app/pages/contact/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/contact/index.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -85,13 +85,5 @@
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  
-  <!-- Admin Page (if publicly accessible) -->
-  <url>
-    <loc>https://ezramemorialss.netlify.app/pages/admin/</loc>
-    <lastmod>2024-01-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
   </url>
 </urlset> 
