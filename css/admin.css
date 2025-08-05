@@ -780,6 +780,38 @@
     margin-top: 2rem;
 }
 
+.events-section {
+    margin-bottom: 3rem;
+}
+
+.events-section h3 {
+    color: #1e3c72;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #764ba2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.events-section h3 i {
+    color: #764ba2;
+}
+
+.past-event-item {
+    opacity: 0.8;
+    border-left-color: #6c757d !important;
+}
+
+.past-event-item h3 {
+    color: #6c757d !important;
+}
+
+.past-event-item h3 i {
+    color: #6c757d !important;
+}
+
 .event-item {
     background: white;
     border-radius: 10px;

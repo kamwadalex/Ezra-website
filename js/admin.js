@@ -1135,9 +1135,11 @@ class AdminDashboard {
             return;
         }
         
-        const eventsList = document.getElementById('events-list');
-        if (!eventsList) {
-            console.error('Events list element not found');
+        const upcomingEventsList = document.getElementById('upcoming-events-list');
+        const pastEventsList = document.getElementById('past-events-list');
+        
+        if (!upcomingEventsList || !pastEventsList) {
+            console.error('Events list elements not found');
             if (retryCount < 3) {
                 console.log(`Retrying events loading in 1 second... (attempt ${retryCount + 1})`);
                 setTimeout(() => this.loadEvents(retryCount + 1), 1000);
@@ -1146,28 +1148,53 @@ class AdminDashboard {
         }
 
         try {
-            eventsList.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin"></i> Loading events...</div>';
+            upcomingEventsList.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin"></i> Loading upcoming events...</div>';
+            pastEventsList.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin"></i> Loading past events...</div>';
             console.log('Loading events...');
             
-            const eventsSnapshot = await this.db.collection('events')
+            // Get current date for comparison
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            
+            // Load upcoming events (today and future)
+            const upcomingSnapshot = await this.db.collection('events')
+                .where('date', '>=', today)
+                .orderBy('date', 'asc')
+                .get();
+
+            // Load past events (before today)
+            const pastSnapshot = await this.db.collection('events')
+                .where('date', '<', today)
                 .orderBy('date', 'desc')
                 .get();
 
-            console.log('Events snapshot received, empty:', eventsSnapshot.empty, 'size:', eventsSnapshot.size);
+            console.log('Upcoming events:', upcomingSnapshot.size, 'Past events:', pastSnapshot.size);
 
-            if (eventsSnapshot.empty) {
-                eventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #666;">No events found</div>';
-                return;
+            // Display upcoming events
+            if (upcomingSnapshot.empty) {
+                upcomingEventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #666;">No upcoming events</div>';
+            } else {
+                upcomingEventsList.innerHTML = '';
+                upcomingSnapshot.forEach(doc => {
+                    const eventData = doc.data();
+                    const eventCard = this.createEventCard(eventData, doc.id, 'upcoming');
+                    upcomingEventsList.appendChild(eventCard);
+                });
             }
 
-            eventsList.innerHTML = '';
-            eventsSnapshot.forEach(doc => {
-                const eventData = doc.data();
-                const eventCard = this.createEventCard(eventData, doc.id);
-                eventsList.appendChild(eventCard);
-            });
+            // Display past events
+            if (pastSnapshot.empty) {
+                pastEventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #666;">No past events</div>';
+            } else {
+                pastEventsList.innerHTML = '';
+                pastSnapshot.forEach(doc => {
+                    const eventData = doc.data();
+                    const eventCard = this.createEventCard(eventData, doc.id, 'past');
+                    pastEventsList.appendChild(eventCard);
+                });
+            }
             
-            console.log('Successfully loaded', eventsSnapshot.size, 'events');
+            console.log('Successfully loaded events');
 
         } catch (error) {
             console.error('Error loading events:', error);
@@ -1175,14 +1202,20 @@ class AdminDashboard {
                 console.log(`Retrying events loading in 2 seconds... (attempt ${retryCount + 1})`);
                 setTimeout(() => this.loadEvents(retryCount + 1), 2000);
             } else {
-                eventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #dc3545;">Failed to load events</div>';
+                upcomingEventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #dc3545;">Failed to load upcoming events</div>';
+                pastEventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #dc3545;">Failed to load past events</div>';
             }
         }
     }
 
-    createEventCard(event, docId) {
+    createEventCard(event, docId, eventType = 'upcoming') {
         const card = document.createElement('div');
         card.className = 'event-item';
+        
+        // Add event type class for styling
+        if (eventType === 'past') {
+            card.classList.add('past-event-item');
+        }
         
         // Format date
         const eventDate = event.date.toDate();
