@@ -482,9 +482,14 @@ class AdminDashboard {
             const newsSnapshot = await this.db.collection('news').get();
             const newsCount = newsSnapshot.size;
 
-            // Get events count
-            const eventsSnapshot = await this.db.collection('events').get();
-            const eventsCount = eventsSnapshot.size;
+            // Get upcoming events count (today and future)
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            
+            const upcomingEventsSnapshot = await this.db.collection('events')
+                .where('date', '>=', today)
+                .get();
+            const eventsCount = upcomingEventsSnapshot.size;
 
             // Update stats
             const galleryCountEl = document.getElementById('gallery-count');
