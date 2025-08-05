@@ -2188,9 +2188,12 @@ footer {
 
 .news-card-excerpt {
     color: #444;
-    font-size: 1.01rem;
+    font-size: 1.1rem;
     margin-bottom: 1.2rem;
     flex: 1 1 auto;
+    line-height: 1.5;
+    word-spacing: normal;
+    letter-spacing: normal;
 }
 
 .news-card-btn {
@@ -2228,7 +2231,8 @@ footer {
         font-size: 1rem;
     }
     .news-card-excerpt {
-        font-size: 0.97rem;
+        font-size: 1.05rem;
+        line-height: 1.4;
     }
     .news-card-img {
         height: 140px;
@@ -3562,9 +3566,11 @@ section h2::after {
 .news-card-excerpt {
     font-family: var(--font-accent);
     color: var(--charcoal-light);
-    line-height: 1.6;
+    line-height: 1.5;
     margin-bottom: var(--spacing-md);
-    font-style: italic;
+    font-style: normal;
+    word-spacing: normal;
+    letter-spacing: normal;
 }
 
 .news-card-btn {
