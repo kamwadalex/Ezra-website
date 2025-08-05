@@ -3,8 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('News loader: DOMContentLoaded fired');
     console.log('News loader: Current pathname:', window.location.pathname);
     
-    // Check if we're on the homepage
-    if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
+    // Check if we're on the homepage (including GitHub Pages subdirectory)
+    const isHomepage = window.location.pathname === '/' || 
+                      window.location.pathname.endsWith('index.html') ||
+                      window.location.pathname.endsWith('/Ezra-website/') ||
+                      window.location.pathname.endsWith('/Ezra-website/index.html');
+    
+    if (isHomepage) {
         console.log('News loader: On homepage, proceeding with news loading');
         const newsGrid = document.getElementById('news-cards-grid');
         console.log('News loader: Looking for news grid element:', newsGrid);
