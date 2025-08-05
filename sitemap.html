@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Map - Ezra School</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .sitemap-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .sitemap-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .sitemap-header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .sitemap-header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        
+        .sitemap-section {
+            margin-bottom: 40px;
+        }
+        
+        .sitemap-section h2 {
+            color: #34495e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .sitemap-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .sitemap-link {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+        
+        .sitemap-link:hover {
+            background: #e3f2fd;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .sitemap-link a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        .sitemap-link a:hover {
+            color: #3498db;
+        }
+        
+        .sitemap-link p {
+            color: #7f8c8d;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .back-home {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .back-home a {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        
+        .back-home a:hover {
+            background: #2980b9;
+        }
+        
+        @media (max-width: 768px) {
+            .sitemap-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .sitemap-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sitemap-container">
+        <div class="sitemap-header">
+            <h1>Site Map</h1>
+            <p>Navigate through all pages of Ezra School website</p>
+        </div>
+        
+        <div class="sitemap-section">
+            <h2>Main Pages</h2>
+            <div class="sitemap-links">
+                <div class="sitemap-link">
+                    <a href="../index.html">Home</a>
+                    <p>Main homepage with school overview and latest updates</p>
+                </div>
+                <div class="sitemap-link">
+                    <a href="about/">About Us</a>
+                    <p>Learn about our school's history, mission, and values</p>
+                </div>
+                <div class="sitemap-link">
+                    <a href="academics/">Academics</a>
+                    <p>Explore our academic programs and curriculum</p>
+                </div>
+                <div class="sitemap-link">
+                    <a href="admissions/">Admissions</a>
+                    <p>Information about enrollment and admission process</p>
+                </div>
+                <div class="sitemap-link">
+                    <a href="student-life/">Student Life</a>
+                    <p>Discover extracurricular activities and student experiences</p>
+                </div>
+                <div class="sitemap-link">
+                    <a href="gallery/">Gallery</a>
+                    <p>Browse photos and videos of school events and activities</p>
+                </div>
+                <div class="sitemap-link">
+                    <a href="contact/">Contact Us</a>
+                    <p>Get in touch with us for inquiries and information</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sitemap-section">
+            <h2>News & Updates</h2>
+            <div class="sitemap-links">
+                <div class="sitemap-link">
+                    <a href="news/news-1.html">News Article 1</a>
+                    <p>Latest school news and announcements</p>
+                </div>
+                <div class="sitemap-link">
+                    <a href="news/news-2.html">News Article 2</a>
+                    <p>Important updates and school events</p>
+                </div>
+                <div class="sitemap-link">
+                    <a href="news/news-3.html">News Article 3</a>
+                    <p>Student achievements and school highlights</p>
+                </div>
+                <div class="sitemap-link">
+                    <a href="news/news-4.html">News Article 4</a>
+                    <p>Community news and upcoming events</p>
+                </div>
+                <div class="sitemap-link">
+                    <a href="news/news-details.html">News Details</a>
+                    <p>Detailed view for news articles</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sitemap-section">
+            <h2>Administrative</h2>
+            <div class="sitemap-links">
+                <div class="sitemap-link">
+                    <a href="admin/">Admin Panel</a>
+                    <p>Administrative tools and management interface</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="back-home">
+            <a href="../index.html">← Back to Homepage</a>
+        </div>
+    </div>
+</body>
+</html> 

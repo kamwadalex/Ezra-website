@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Disallow admin areas (if you want to keep them private)
+Disallow: /pages/admin/
+Disallow: /js/admin.js
+Disallow: /css/admin.css
+
+# Allow important pages
+Allow: /index.html
+Allow: /pages/
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Sitemap location
+Sitemap: https://kamwadalex.github.io/Ezra-website/sitemap.xml
+
+# Crawl delay (optional - helps prevent server overload)
+Crawl-delay: 1 
