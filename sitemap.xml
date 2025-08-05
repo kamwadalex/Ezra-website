@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/</loc>
+    <loc>https://ezramemorialss.netlify.app/</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -10,42 +10,42 @@
   
   <!-- Main Pages -->
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/pages/about/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/about/</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/pages/academics/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/academics/</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/pages/admissions/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/admissions/</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/pages/student-life/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/student-life/</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/pages/gallery/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/gallery/</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/pages/contact/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/contact/</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -53,35 +53,35 @@
   
   <!-- News Pages -->
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/pages/news/news-1.html</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/news/news-1.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/pages/news/news-2.html</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/news/news-2.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/pages/news/news-3.html</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/news/news-3.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/pages/news/news-4.html</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/news/news-4.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/pages/news/news-details.html</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/news/news-details.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -89,7 +89,7 @@
   
   <!-- Admin Page (if publicly accessible) -->
   <url>
-    <loc>https://kamwadalex.github.io/Ezra-website/pages/admin/</loc>
+    <loc>https://ezramemorialss.netlify.app/pages/admin/</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>

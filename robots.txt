@@ -14,7 +14,7 @@ Allow: /js/
 Allow: /images/
 
 # Sitemap location
-Sitemap: https://kamwadalex.github.io/Ezra-website/sitemap.xml
+Sitemap: https://ezramemorialss.netlify.app/sitemap.xml
 
 # Crawl delay (optional - helps prevent server overload)
 Crawl-delay: 1 
