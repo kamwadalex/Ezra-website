@@ -1195,8 +1195,9 @@ class AdminDashboard {
 
         try {
             upcomingEventsList.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin"></i> Loading upcoming events...</div>';
-            pastEventsList.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin"></i> Loading past events...</div>';
-            console.log('Loading events...');
+            // Show load past events button instead of loading automatically
+            pastEventsList.innerHTML = '<div style="text-align: center; padding: 2rem;"><button onclick="adminDashboard.loadPastEvents()" class="btn btn-secondary"><i class="fas fa-history"></i> Load Past Events</button></div>';
+            console.log('Loading upcoming events...');
             
             // Get current date for comparison
             const now = new Date();
@@ -1208,13 +1209,7 @@ class AdminDashboard {
                 .orderBy('date', 'asc')
                 .get();
 
-            // Load past events (before today)
-            const pastSnapshot = await this.db.collection('events')
-                .where('date', '<', today)
-                .orderBy('date', 'desc')
-                .get();
-
-            console.log('Upcoming events:', upcomingSnapshot.size, 'Past events:', pastSnapshot.size);
+            console.log('Upcoming events:', upcomingSnapshot.size);
 
             // Display upcoming events
             if (upcomingSnapshot.empty) {
@@ -1227,6 +1222,48 @@ class AdminDashboard {
                     upcomingEventsList.appendChild(eventCard);
                 });
             }
+            
+            console.log('Successfully loaded upcoming events');
+
+        } catch (error) {
+            console.error('Error loading events:', error);
+            if (retryCount < 3) {
+                console.log(`Retrying events loading in 2 seconds... (attempt ${retryCount + 1})`);
+                setTimeout(() => this.loadEvents(retryCount + 1), 2000);
+            } else {
+                upcomingEventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #dc3545;">Failed to load upcoming events</div>';
+                pastEventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #dc3545;">Failed to load past events</div>';
+            }
+        }
+    }
+
+    async loadPastEvents() {
+        if (!this.db) {
+            console.error('Firebase not initialized for past events loading');
+            return;
+        }
+        
+        const pastEventsList = document.getElementById('past-events-list');
+        if (!pastEventsList) {
+            console.error('Past events list element not found');
+            return;
+        }
+
+        try {
+            pastEventsList.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fas fa-spinner fa-spin"></i> Loading past events...</div>';
+            console.log('Loading past events...');
+            
+            // Get current date for comparison
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            
+            // Load past events (before today)
+            const pastSnapshot = await this.db.collection('events')
+                .where('date', '<', today)
+                .orderBy('date', 'desc')
+                .get();
+
+            console.log('Past events:', pastSnapshot.size);
 
             // Display past events
             if (pastSnapshot.empty) {
@@ -1240,17 +1277,11 @@ class AdminDashboard {
                 });
             }
             
-            console.log('Successfully loaded events');
+            console.log('Successfully loaded past events');
 
         } catch (error) {
-            console.error('Error loading events:', error);
-            if (retryCount < 3) {
-                console.log(`Retrying events loading in 2 seconds... (attempt ${retryCount + 1})`);
-                setTimeout(() => this.loadEvents(retryCount + 1), 2000);
-            } else {
-                upcomingEventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #dc3545;">Failed to load upcoming events</div>';
-                pastEventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #dc3545;">Failed to load past events</div>';
-            }
+            console.error('Error loading past events:', error);
+            pastEventsList.innerHTML = '<div style="text-align: center; padding: 2rem; color: #dc3545;">Failed to load past events</div>';
         }
     }
 
