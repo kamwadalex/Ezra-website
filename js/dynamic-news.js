@@ -2,6 +2,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('News loader: DOMContentLoaded fired');
     
+    // Only run on homepage
+    if (!document.body.classList.contains('home-page')) {
+        console.log('News loader: Not on homepage, skipping news loading');
+        return;
+    }
+    
     const newsGrid = document.getElementById('news-cards-grid');
     console.log('News loader: Looking for news grid element:', newsGrid);
     

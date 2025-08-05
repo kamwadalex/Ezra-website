@@ -1,5 +1,11 @@
 // Dynamic Events Loading from Firestore
 document.addEventListener('DOMContentLoaded', function() {
+    // Only run on homepage
+    if (!document.body.classList.contains('home-page')) {
+        console.log('Events loader: Not on homepage, skipping events loading');
+        return;
+    }
+    
     const eventsGrid = document.getElementById('events-grid');
     
     if (!eventsGrid) {
