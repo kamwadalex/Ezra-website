@@ -618,6 +618,14 @@ class AdminDashboard {
     async handleAdminUpload(event) {
         event.preventDefault();
         
+        // Get the submit button and disable it
+        const submitBtn = event.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+        
         const fileInput = document.getElementById('admin-file-input');
         const files = Array.from(fileInput.files);
         const categorySelect = document.getElementById('admin-image-category');
@@ -625,6 +633,9 @@ class AdminDashboard {
         
         if (files.length === 0) {
             this.showNotification('Please select at least one image', 'error');
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
             return;
         }
 
@@ -659,6 +670,10 @@ class AdminDashboard {
         } catch (error) {
             console.error('Upload error:', error);
             this.showNotification('Upload failed. Please try again.', 'error');
+            
+            // Reset button on error
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
         }
     }
 
@@ -822,6 +837,14 @@ class AdminDashboard {
     async handleAddNews(event) {
         event.preventDefault();
         
+        // Get the submit button and disable it
+        const submitBtn = event.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
+        
         const title = document.getElementById('news-title').value;
         const author = document.getElementById('news-author').value;
         const excerpt = document.getElementById('news-excerpt').value;
@@ -852,6 +875,10 @@ class AdminDashboard {
         } catch (error) {
             console.error('News publish error:', error);
             this.showNotification('Failed to publish news article', 'error');
+            
+            // Reset button on error
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
         }
     }
 
@@ -1110,6 +1137,14 @@ class AdminDashboard {
     async handleAddEvent(event) {
         event.preventDefault();
         
+        // Get the submit button and disable it
+        const submitBtn = event.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding Event...';
+        
         const formData = new FormData(event.target);
         const eventData = {
             title: formData.get('title'),
@@ -1129,6 +1164,10 @@ class AdminDashboard {
         } catch (error) {
             console.error('Error adding event:', error);
             this.showNotification('Failed to add event', 'error');
+            
+            // Reset button on error
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
         }
     }
 
