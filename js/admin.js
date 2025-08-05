@@ -823,6 +823,7 @@ class AdminDashboard {
         event.preventDefault();
         
         const title = document.getElementById('news-title').value;
+        const author = document.getElementById('news-author').value;
         const excerpt = document.getElementById('news-excerpt').value;
         const content = document.getElementById('news-content').value;
         const imageFile = document.getElementById('news-image').files[0];
@@ -836,11 +837,12 @@ class AdminDashboard {
             // Save news to Firestore
             await this.db.collection('news').add({
                 title: title,
+                author: author,
                 excerpt: excerpt,
                 content: content,
                 imageUrl: imageUrl,
                 publishedAt: new Date(),
-                publishedBy: this.currentUser?.displayName || this.currentUser?.email || 'Admin'
+                publishedBy: author
             });
 
             this.showNotification('News article published successfully!', 'success');

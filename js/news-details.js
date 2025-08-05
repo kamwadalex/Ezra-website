@@ -115,14 +115,13 @@ class NewsDetailsLoader {
             });
 
             // Add author info if available
-            if (newsData.publishedBy) {
-                const authorDiv = document.createElement('div');
-                authorDiv.className = 'news-author';
-                authorDiv.innerHTML = `
-                    <p><strong>Published by:</strong> ${newsData.publishedBy}</p>
-                `;
-                newsBody.appendChild(authorDiv);
-            }
+            const author = newsData.author || newsData.publishedBy || 'School Administration';
+            const authorDiv = document.createElement('div');
+            authorDiv.className = 'news-author';
+            authorDiv.innerHTML = `
+                <p><strong>Published by:</strong> ${author}</p>
+            `;
+            newsBody.appendChild(authorDiv);
         }
     }
 
