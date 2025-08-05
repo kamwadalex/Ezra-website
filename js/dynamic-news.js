@@ -1,13 +1,20 @@
 // Dynamic News Loading for Homepage
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('News loader: DOMContentLoaded fired');
+    console.log('News loader: Current pathname:', window.location.pathname);
+    
     // Check if we're on the homepage
     if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
+        console.log('News loader: On homepage, proceeding with news loading');
         const newsGrid = document.getElementById('news-cards-grid');
+        console.log('News loader: Looking for news grid element:', newsGrid);
         
         if (!newsGrid) {
-            console.error('News grid element not found');
+            console.error('News loader: News grid element not found');
             return;
         }
+        
+        console.log('News loader: News grid element found successfully');
 
         console.log('News loader: Starting initialization...');
 
