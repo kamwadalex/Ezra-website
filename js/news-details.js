@@ -44,6 +44,7 @@ class NewsDetailsLoader {
             }
 
             const newsData = doc.data();
+            console.log('News details data:', newsData);
             this.displayNewsDetails(newsData);
 
         } catch (error) {
@@ -116,6 +117,10 @@ class NewsDetailsLoader {
 
             // Add author info if available
             const author = newsData.author || newsData.publishedBy || 'School Administration';
+            console.log('Author field:', newsData.author);
+            console.log('PublishedBy field:', newsData.publishedBy);
+            console.log('Final author:', author);
+            
             const authorDiv = document.createElement('div');
             authorDiv.className = 'news-author';
             authorDiv.innerHTML = `

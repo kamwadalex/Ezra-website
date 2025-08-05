@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('.nav-menu');
     const hamburger = document.querySelectorAll('.hamburger');
 
-    navToggle.addEventListener('click', function() {
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
         navMenu.classList.toggle('active');
         navToggle.classList.toggle('active');
         
@@ -22,20 +23,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-menu a');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
-            document.body.style.overflow = 'auto';
+            if (navMenu && navToggle) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         });
     });
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+        if (navToggle && navMenu && !navToggle.contains(e.target) && !navMenu.contains(e.target)) {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
     });
+    }
 
     // Accordion functionality for academics page
     const accordionBtns = document.querySelectorAll('.accordion-btn');
